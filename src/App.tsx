@@ -1,4 +1,4 @@
-import { createHashRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
 import { ToastContainer } from "react-toastify";
 import NotFound from "./modules/shared/component/notFound/NotFound";
@@ -12,7 +12,7 @@ import HotelsList from "./modules/hotels/component/hotelsList/HotelsList";
 import Register from "./modules/authontication/component/register/Register";
 
 function App() {
-  const routes = createHashRouter([
+  const routes = createBrowserRouter([
     {
       path: "/",
       element: <AuthLayOut />,
