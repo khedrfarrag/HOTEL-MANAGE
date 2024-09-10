@@ -1,34 +1,57 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
-import './App.css';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import "./App.css";
+import { ToastContainer } from "react-toastify";
+import NotFound from "./modules/shared/component/notFound/NotFound";
+import Login from "./modules/authontication/component/logIn/Login";
+import AuthLayOut from "./modules/shared/component/authLayout/AuthLayout";
+import ResetPass from "./modules/authontication/component/resetPass/ResetPass";
+import VerifyAccount from "./modules/authontication/component/verifyAccount/VerifyAccount";
+import ForgetPass from "./modules/authontication/component/forgetPass/ForgetPass";
+import MasterLayOut from "./modules/shared/component/masterLayout/MasterLayOut";
+import HotelsList from "./modules/hotels/component/hotelsList/HotelsList";
+import Register from "./modules/authontication/component/register/Register";
 
 function App() {
-  const [count, setCount] = useState(0);
-
+  const routes = createBrowserRouter([
+    {
+      path: "/",
+      element: <AuthLayOut />,
+      errorElement: <NotFound />,
+      children: [
+        {
+          index: true,
+          element: <Login />,
+        },
+        {
+          path: "login",
+          element: <Login />,
+        },
+        { path: "reset-Pass", element: <ResetPass /> },
+        { path: "register", element: <Register /> },
+        { path: "verify-account", element: <VerifyAccount /> },
+        {
+          path: "forget-pass",
+          element: <ForgetPass />,
+        },
+      ],
+    },
+    {
+      path: "/layout-Master",
+      element: <MasterLayOut />,
+      errorElement: <NotFound />,
+      children: [
+        {
+          index: true,
+          element: <HotelsList />,
+        },
+      ],
+    },
+  ]);
   return (
     <>
-      <div>
-        {' '}
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <ToastContainer autoClose={2500} />
+      <RouterProvider router={routes} />
+
     </>
   );
 }
