@@ -1,5 +1,32 @@
-import React from "react";
-
-export default function AuthonticationContext() {
-  return <div>AuthonticationContext</div>;
+import { jwtDecode } from "jwt-decode";
+import React, { createContext, useEffect, useState } from "react";
+type Props = {
+  children: React.ReactNode;
+  // children:PropsWithChildren
+};
+type state = {
+  token: string | null;
+};
+const AuthContext = createContext(null);
+export default function AuthonticationContext(props: Props) {
+  const [LoginData, SetLoginData] = useState<state | undefined>();
+  const SaveToken = () => {
+    // save token to local storage
+    const DataToken = localStorage.getItem("token");
+    if (DataToken) {
+      const DecodeToken = jwtDecode(DataToken);
+      SetLoginData(DecodeToken);
+      // SetLoginData({ token: '123456' });
+    }
+  };
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      SaveToken();
+    }
+  });
+  return (
+    <AuthContext.Provider value={{ LoginData, SetLoginData }}>
+      {props.children}
+    </AuthContext.Provider>
+  );
 }
