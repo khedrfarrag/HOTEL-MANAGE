@@ -1,5 +1,5 @@
-import React from "react";
-
+import React from 'react';
+import Style from './sass/HotelList.module.scss';
 export default function HotelsList() {
-  return <div>HotelsList Hello worled</div>;
+  return <div className={Style.contaner}>HotelsList Hello worled</div>;
 }
