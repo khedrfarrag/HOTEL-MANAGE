@@ -51,6 +51,7 @@ function App() {
     <>
       <ToastContainer autoClose={2500} />
       <RouterProvider router={routes} />
+
     </>
   );
 }
