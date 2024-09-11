@@ -2,7 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
 import { ToastContainer } from "react-toastify";
 import NotFound from "./modules/shared/component/notFound/NotFound";
-import Login from "./modules/authontication/component/logIn/Login";
+import Login from "./modules/authontication/component/logIn/Login.tss";
 import AuthLayOut from "./modules/shared/component/authLayout/AuthLayout";
 import ResetPass from "./modules/authontication/component/resetPass/ResetPass";
 import VerifyAccount from "./modules/authontication/component/verifyAccount/VerifyAccount";
