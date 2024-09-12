@@ -1,4 +1,4 @@
-const BASE_URL = "https://e-commerce-node-js-zeta.vercel.app/api/v0/";
+const BASE_URL = 'https://e-commerce-node-js-zeta.vercel.app/api/v0/';
 
 // ........................................................................................admin
 
@@ -27,7 +27,7 @@ export const Rooms_URL = {
   deleteRoom: (id) => `${BASE_Admin_Rooms}/${id}`,
 
   //    Check All Users
-  getAllRooms: `${BASE_Admin_Rooms} ?page=1&size=10`,
+  getAllRooms: `${BASE_Admin_Rooms}?page=1&size=10`,
 };
 
 // .....................................................admin-Booking
