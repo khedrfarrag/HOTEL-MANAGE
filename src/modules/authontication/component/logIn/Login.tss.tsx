@@ -5,7 +5,7 @@ import { signin } from '../../../../assets/ParrelAssets/Parrel';
 export default function Login() {
   return (
     <>
-      <div>Loginssss</div>
+      <div>Loginsssssss</div>
       <HotelsList />
     </>
   );
