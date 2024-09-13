@@ -1,10 +1,11 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import App from "./App.tsx";
-import "./index.css";
-import AuthonticationContext from "./modules/authontication/context/AuthonticationContext.tsx";
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import App from './App.tsx';
+import './index.css';
 
-createRoot(document.getElementById("root")!).render(
+import AuthonticationContext from './modules/authontication/context/AuthonticationContext.tsx';
+
+createRoot(document.getElementById('root')!).render(
   <StrictMode>
     {/* including usecontext App */}
     <AuthonticationContext>

@@ -14,7 +14,7 @@ import Register from './modules/authontication/component/register/Register';
 function App() {
   const routes = createBrowserRouter([
     {
-      path: '/',
+      path: '/AuthLayOut',
       element: <AuthLayOut />,
       errorElement: <NotFound />,
       children: [
@@ -36,7 +36,7 @@ function App() {
       ],
     },
     {
-      path: '/layout-Master',
+      path: '/',
       element: <MasterLayOut />,
       errorElement: <NotFound />,
       children: [
