@@ -6,3 +6,7 @@ export const VALIDATIONS = {
   passwordRegex: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/,
   dateRegex: /\b(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-\d{4}\b/g,
 };
+
+export const RequiredField = (fieldName:string) => ({
+  required: `${fieldName} is required`,
+});
