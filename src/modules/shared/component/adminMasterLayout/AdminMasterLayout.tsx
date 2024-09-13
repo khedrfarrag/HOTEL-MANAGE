@@ -1,11 +1,12 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
-import NavBar from '../navBar/NavBar';
 import SideBar from '../sideBar/SideBar';
+import NavBar from '../navBar/NavBar';
+import { Outlet } from 'react-router-dom';
 
-export default function MasterLayOut() {
+export default function AdminMasterLayout() {
   return (
     <>
+      {' '}
       <div className="d-flex">
         <div>
           <SideBar />
@@ -15,6 +16,7 @@ export default function MasterLayOut() {
           <Outlet />
         </div>
       </div>
+      ;
     </>
   );
 }

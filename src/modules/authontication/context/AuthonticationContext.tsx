@@ -19,11 +19,13 @@ export default function AuthonticationContext(props: Props) {
       // SetLoginData({ token: '123456' });
     }
   };
+
   useEffect(() => {
     if (localStorage.getItem('token')) {
       SaveToken();
     }
-  });
+  }, []);
+
   return (
     <AuthContext.Provider value={{ LoginData, SetLoginData }}>
       {props.children}
