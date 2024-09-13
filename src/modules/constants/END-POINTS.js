@@ -1,49 +1,71 @@
+// ........................................................................................getToken
+export const getToken = () => {
+  return {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
+  };
+};
+
+// ........................................................................................imagePathHelper
+const imagePathHelper = (path) => {
+  return `${BASE_URL}${path}`;
+};
+
+// ........................................................................................Collections
+const BASE_URL_COLLECTION = `https://api.getpostman.com/collections`;
+
+export const COLLECTIONS_URL = {
+  createCollection: `${BASE_URL_COLLECTION}`,
+  getCollection: (id) => `${BASE_URL_COLLECTION}/${id}`,
+  deleteCollection: (id) => `${BASE_URL_COLLECTION}/${id}`,
+  updateCollection: (id) => `${BASE_URL_COLLECTION}/${id}`,
+  createAllCollections: `${BASE_URL_COLLECTION}`,
+};
+
+// ................................................................................................baseURL
 const BASE_URL = 'https://e-commerce-node-js-zeta.vercel.app/api/v0/';
 
 // ........................................................................................admin
-
 // .....................................................admin-Users
 const BASE_Admin_Users = `${BASE_URL}/admin/users`;
 
-export const Users_URL = {
+export const ADMIN_Users_URL = {
   login: `${BASE_Admin_Users}/login`,
   resetPassword: `${BASE_Admin_Users}/reset-password`,
   changePassword: `${BASE_Admin_Users}/change-password`,
   forgetPassword: `${BASE_Admin_Users}/forgot-password`,
   createUser: `${BASE_Admin_Users}`,
   userProfile: (id) => `${BASE_Admin_Users}/${id}`,
-
-  //    Check All Users
-  allUsers: (id) => `${BASE_Admin_Users}?page=1&size=10`,
+  allUsers: (page, size) => `${BASE_Admin_Users}?page=${page}&size=${size}`,
 };
 
 // .....................................................admin-Room
 const BASE_Admin_Rooms = `${BASE_URL}/admin/rooms`;
 
-export const Rooms_URL = {
+export const ADMIN_Rooms_URL = {
   createRoom: `${BASE_Admin_Rooms}`,
   updateRoom: (id) => `${BASE_Admin_Rooms}/${id}`,
   GetRoomDetails: (id) => `${BASE_Admin_Rooms}/${id}`,
   deleteRoom: (id) => `${BASE_Admin_Rooms}/${id}`,
-
-  //    Check All Users
-  getAllRooms: `${BASE_Admin_Rooms}?page=1&size=10`,
+  getAllRooms: (page, size) => `${BASE_Admin_Rooms}?page=${page}&size=${size}`,
 };
 
 // .....................................................admin-Booking
 const BASE_Admin_Booking = `${BASE_URL}/admin/rooms`;
 
-export const Booking_URL = {
+export const ADMIN_Booking_URL = {
   getBookingDetails: `${BASE_Admin_Booking}`,
   deleteBooking: (id) => `${BASE_Admin_Booking}/${id}`,
-  GetAllBookig: `${BASE_Admin_Booking}?page=1&size=10`,
+  GetAllBookig: (page, size) =>
+    `${BASE_Admin_Booking}?page=${page}&size=${size}`,
 };
 
 // .....................................................admin-RoomsFacility
 
 const BASE_Admin_RoomFacility = `${BASE_URL}/admin/room-facilities`;
 
-export const RoomFacility_URL = {
+export const ADMIN_RoomFacility_URL = {
   createRoomFacility: `${RoomFacility_URL}`,
   getAllRoomFacility: `${RoomFacility_URL}`,
   roomFaciltyDetails: (id) => `${RoomFacility_URL}/${id}`,
@@ -55,7 +77,7 @@ export const RoomFacility_URL = {
 
 const BASE_Admin_Ads = `${BASE_URL}/admin/ads`;
 
-export const Ads_URL = {
+export const ADMIN_Ads_URL = {
   createAds: `${BASE_Admin_Ads}`,
   getAllAds: `${BASE_Admin_Ads}`,
   getAdsDetails: (id) => `${BASE_Admin_Ads}/${id}`,
@@ -67,18 +89,18 @@ export const Ads_URL = {
 
 const BASE_Admin_Dashboard = `${BASE_URL}/admin/dashboard`;
 
-export const Dashboard_URL = {
+export const ADMIN_Dashboard_URL = {
   Charts: `${BASE_Admin_Dashboard}`,
 };
 
 // ........................................................................................Portal
-
 // .....................................................portal-Rooms
 
 const BASE_Portal_Rooms = `${BASE_URL}/portal/rooms`;
 
-export const rooms_URL = {
-  getAllRooms: `${BASE_Portal_Rooms}/available?page=1&size=10&startDate=2023-01-20&endDate=2023-01-30`,
+export const Portal_rooms_URL = {
+  getAllRooms: (page, size, startDate, endDate) =>
+    `${BASE_Portal_Rooms}/available?page=${page}&size=${size}&startDate=${startDate}&endDate=${endDate}`,
   getRoomDetails: (id) => `${BASE_Portal_Rooms}/${id}`,
 };
 
@@ -86,7 +108,7 @@ export const rooms_URL = {
 
 const BASE_Portal_Booking = `${BASE_URL}/portal/booking`;
 
-export const booking_URL = {
+export const PORTAL_Booking_URL = {
   createBooking: `${BASE_Portal_Booking}`,
   getAllBooking: `${BASE_Portal_Booking}/my`,
   getbookingDetails: (id) => `${BASE_Portal_Booking}/${id}`,
@@ -94,7 +116,51 @@ export const booking_URL = {
 };
 
 // .....................................................portal-User
+const BASE_PORTAL_USER = `${BASE_URL}/portal/users`;
+
+export const PORTAL_USER_URL = {
+  getUserProfile: (id) => `${BASE_PORTAL_USER}/${id}`,
+  createUser: `${BASE_PORTAL_USER}`,
+  forgetPassword: `${BASE_PORTAL_USER}/forgot-password`,
+  changePassword: `${BASE_PORTAL_USER}/change-password`,
+  resetPassword: `${BASE_PORTAL_USER}/reset-password`,
+  logIn: `${BASE_PORTAL_USER}/login`,
+  googleAuth: `${BASE_PORTAL_USER}/auth/google`,
+  faceBookAuth: `${BASE_PORTAL_USER}/auth/facebook`,
+};
+
 // .....................................................portal-Ads
+const BASE_PORTAL_ADS = `${BASE_URL}/portal/ads`;
+
+export const PORTAL_ADS_URL = {
+  getAllAds: `${BASE_PORTAL_ADS}`,
+  getAdsDetails: (id) => `${BASE_PORTAL_ADS}/${id}`,
+};
+
 // .....................................................portal-FavoriteRooms
+const BASE_PORTAL_FavoriteRoom = `${BASE_URL}/portal/favorite-rooms`;
+
+export const PORTAL_FavoriteRooms_URL = {
+  getMyFavoriteRoom: `${BASE_PORTAL_FavoriteRoom}`,
+  addToFavorite: `${BASE_PORTAL_FavoriteRoom}`,
+  removeFavorite: (id) => `${BASE_PORTAL_FavoriteRoom}/${id}`,
+};
+
 // .....................................................portal-RoomComments
+const BASE_PORTAL_RoomComments = `${BASE_URL}/portal/room-comments`;
+
+export const PORTAL_RoomComments_URL = {
+  getAllRoomComments: (id) => `${BASE_PORTAL_RoomComments}/${id}`,
+  createComment: `${BASE_PORTAL_RoomComments}`,
+  removeComments: (id) => `${BASE_PORTAL_RoomComments}/${id}`,
+  updateComments: (id) => `${BASE_PORTAL_RoomComments}/${id}`,
+};
+
 // .....................................................portal-Reviews
+const BASE_PORTAL_REVIEWS = `${BASE_URL}/portal/room-reviews`;
+
+export const PORTAL_REVIEWS_URL = {
+  getAllRoomReviews: (id) => `${BASE_PORTAL_REVIEWS}/${id}`,
+  createreview: `${BASE_PORTAL_REVIEWS}`,
+  updateComment: (id) => `${BASE_PORTAL_REVIEWS}/${id}`,
+};
