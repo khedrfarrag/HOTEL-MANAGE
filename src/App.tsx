@@ -47,6 +47,7 @@ function App() {
           path: 'forget-pass',
           element: <ForgetPass />,
         },
+        
       ],
     },
     {
@@ -123,6 +124,10 @@ function App() {
         {
           path: 'users-List',
           element: <UsersList />,
+        },
+        {
+          path: 'change-pass',
+          element: <ChangePass />,
         },
       ],
     },
