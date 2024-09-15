@@ -1,12 +1,13 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.module.scss';
 import { ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 import NotFound from './modules/shared/component/notFound/NotFound';
 import Login from './modules/authontication/component/logIn/Login.tss';
 import AuthLayOut from './modules/shared/component/authLayout/AuthLayout';
 import ResetPass from './modules/authontication/component/resetPass/ResetPass';
 import VerifyAccount from './modules/authontication/component/verifyAccount/VerifyAccount';
-import ForgetPass from './modules/authontication/component/forgetPass/ForgetPass';
+import ForgetPass from './modules/authontication/component/forgetPassword/forgetPassword';
 import MasterLayOut from './modules/shared/component/masterLayout/MasterLayOut';
 import HotelsList from './modules/hotels/component/hotelsList/HotelsList';
 import Register from './modules/authontication/component/register/Register';
@@ -30,7 +31,7 @@ function App() {
         { path: 'register', element: <Register /> },
         { path: 'verify-account', element: <VerifyAccount /> },
         {
-          path: 'forget-pass',
+          path: 'forget-password',
           element: <ForgetPass />,
         },
       ],

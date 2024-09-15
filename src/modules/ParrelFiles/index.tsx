@@ -1,5 +1,5 @@
 //////?<<<<<< this parrel file exporting becuse easy importing in anuother component />>
-import ForgetPass from "../authontication/component/forgetPass/ForgetPass";
+import ForgetPass from "../authontication/component/forgetPassword/forgetPassword";
 import Login from "../authontication/component/logIn/Login.tss";
 import Register from "../authontication/component/register/Register";
 import ResetPass from "../authontication/component/resetPass/ResetPass";
