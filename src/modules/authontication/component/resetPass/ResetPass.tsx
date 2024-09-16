@@ -1,21 +1,23 @@
-import React, { useState } from 'react';
-import Grid from '@mui/material/Grid2';
-import Box from '@mui/material/Box';
-import Styled from './sass/ResetPass.module.scss';
-import { Button, Link, Stack, TextField, Typography } from '@mui/material';
-import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { Button, Link, Stack, TextField, Typography } from '@mui/material';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid2';
+import axios, { AxiosError } from 'axios';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {
   AxiosErrorResponse,
   ResetPasswordFormData,
 } from '../../../../Interfaces/AuthResponse';
-import axios, { AxiosError } from 'axios';
-import { ADMIN_Users_URL } from '../../../constants/END-POINTS';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { VALIDATIONS } from '../../../constants/VALIDATIONS';
+import { ADMIN_Users_URL } from '../../../../constants/END-POINTS';
+import { VALIDATIONS } from '../../../../constants/VALIDATIONS';
+import Styled from './sass/ResetPass.module.scss';
+
+
 
 export default function ResetPass({ imag }: { imag: string }) {
   const navigate = useNavigate();

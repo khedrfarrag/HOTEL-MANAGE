@@ -1,6 +1,5 @@
-import { Box, Button, TextField, Typography } from '@mui/material';
+import { Box, Button, Stack, TextField, Typography } from '@mui/material';
 import Grid from '@mui/material/Grid2';
-import { Stack } from 'react-bootstrap';
 import './sass/Changepass.module.scss'
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
