@@ -2,7 +2,6 @@ import { jwtDecode } from 'jwt-decode';
 import React, { createContext, useEffect, useState } from 'react';
 type Props = {
   children: React.ReactNode;
-  // children:PropsWithChildren
 };
 type state = {
   token: string | null;
