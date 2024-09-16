@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.module.scss';
 import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import NotFound from './modules/shared/component/notFound/NotFound';
 import Login from './modules/authontication/component/logIn/Login.tss';
 import ResetPass from './modules/authontication/component/resetPass/ResetPass';
@@ -23,6 +24,7 @@ import FacilitiesList from './modules/admin/components/facilitiesList/Facilities
 import RoomsList from './modules/admin/components/roomList/RoomsList';
 import AddOrEditRooms from './modules/admin/components/rooms/AddOrEditRooms';
 import UsersList from './modules/admin/components/usersList/UsersList';
+import { imgResetpass } from './assets/ParrelAssets/Parrel';
 
 function App() {
   const routes = createBrowserRouter([
@@ -40,7 +42,10 @@ function App() {
           path: 'login',
           element: <Login />,
         },
-        { path: 'reset-Pass', element: <ResetPass /> },
+        {
+          path: 'reset-Pass',
+          element: <ResetPass imag={imgResetpass} />,
+        },
         { path: 'register', element: <Register /> },
         { path: 'verify-account', element: <VerifyAccount /> },
         {
@@ -129,8 +134,8 @@ function App() {
   ]);
   return (
     <>
-      <ToastContainer autoClose={2500} />
-      <RouterProvider router={routes} />
+      <ToastContainer />
+      <RouterProvider router={routes}></RouterProvider>
     </>
   );
 }
