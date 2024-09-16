@@ -69,7 +69,7 @@ export default function ForgetPass() {
               <Typography variant="h6">
                 You can{' '}
                 <Typography component="span">
-                  <Link className={Styles['link-login']} to="/login">
+                  <Link className={Styles['link-login']} to="/AuthLayOut/login">
                     {' '}
                     Login here !
                   </Link>

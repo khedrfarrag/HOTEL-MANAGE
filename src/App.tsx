@@ -51,7 +51,7 @@ function App() {
         {
           path: 'forget-password',
           element: <ForgetPass/>,
-        },
+          },
         
       ],
     },
