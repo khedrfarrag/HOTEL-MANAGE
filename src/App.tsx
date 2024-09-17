@@ -10,6 +10,7 @@ import ForgetPass from './modules/authontication/component/forgetPass/ForgetPass
 import MasterLayOut from './modules/shared/component/masterLayout/MasterLayOut';
 import HotelsList from './modules/hotels/component/hotelsList/HotelsList';
 import Register from './modules/authontication/component/register/Register';
+import Room from "../src/modules/Room/Room";
 
 function App() {
   const routes = createBrowserRouter([
@@ -44,6 +45,7 @@ function App() {
           index: true,
           element: <HotelsList />,
         },
+        {path:"room",element:<Room />},
       ],
     },
   ]);

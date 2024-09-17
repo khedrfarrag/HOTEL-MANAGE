@@ -2,13 +2,21 @@
 export const getToken = () => {
   return {
     headers: {
-      Authorization: `Bearer ${localStorage.getItem('token')}`,
+      Authorization: `Bearer ${localStorage.getItem('userToken')}`,
     },
   };
 };
 
+export const getTokenWithParam=(pagenumber,pagesize)=>{
+  return {
+    header:{
+      Authorization: `Bearer ${localStorage.getItem('userToken')}`,Param:{page:pagenumber,size:pagesize}
+    }
+  }
+}
+
 // ........................................................................................imagePathHelper
-const imagePathHelper = (path:any) => {
+export const imagePathHelper = (path:any) => {
   return `${BASE_URL}${path}`;
 };
 
@@ -24,7 +32,7 @@ export const COLLECTIONS_URL = {
 };
 
 // ................................................................................................baseURL
-const BASE_URL = 'https://e-commerce-node-js-zeta.vercel.app/api/v0/';
+const BASE_URL = 'https://upskilling-egypt.com:3000/api/v0';
 
 // ........................................................................................admin
 // .....................................................admin-Users
@@ -48,7 +56,7 @@ export const ADMIN_Rooms_URL = {
   updateRoom: (id:string) => `${BASE_Admin_Rooms}/${id}`,
   GetRoomDetails: (id:string) => `${BASE_Admin_Rooms}/${id}`,
   deleteRoom: (id:string) => `${BASE_Admin_Rooms}/${id}`,
-  getAllRooms: (page:string, size:string) => `${BASE_Admin_Rooms}?page=${page}&size=${size}`,
+  getAllRooms: `${BASE_Admin_Rooms}`,
 };
 
 // .....................................................admin-Booking
