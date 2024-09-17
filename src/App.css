@@ -1,0 +1,51 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-sidebar: rgba(32, 63, 199, 1);
+  --hover-bg-sidebar: rgba(26, 27, 30, 0.17);
+  --color-sidebar: rgba(250, 250, 250, 1);
+}
+
+/* ---------------------- sideBar comp ---------------------- */
+.sidebar-container .css-1wvake5 {
+  border-right: none !important;
+}
+.sidebar-container ul span {
+  color: var(--color-sidebar) !important;
+}
+.sidebar-container .ps-sidebar-container {
+  background-color: var(--bg-sidebar) !important;
+  height: 100vh !important;
+  transition: all 0.3s ease-in-out;
+}
+.sidebar-container .ps-menu-button:hover,
+.sidebar-container .ps-menu-button:focus {
+  background-color: var(--hover-bg-sidebar) !important;
+  border-radius: 15px;
+  border-color: transparent !important;
+}
+.sidebar-container .ps-menu-button.active {
+  color: var(color-sidebar);
+}
+.sidebar-container .icon-toggle i {
+  padding: 0.8rem 0.25rem;
+  transition: transform 0.3s ease-in-out;
+}
+
+.navbar-light .dropdown-toggle::after {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .css-1wvake5.ps-collapsed {
+    width: 65px !important;
+    min-width: 65px !important;
+  }
+  .css-1t8x7v1 > .ps-menu-button {
+    padding-left: 15px !important;
+  }
+}/*# sourceMappingURL=App.css.map */
