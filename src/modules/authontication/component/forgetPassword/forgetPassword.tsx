@@ -44,7 +44,6 @@ export default function ForgetPass() {
       // Navigate to the reset password page after a successful submission
       navigate('/reset-Pass');
     } catch (error) {
-
       // Handling Axios error and showing an error message using toast notification
       const axiosError = error as AxiosError<AxiosErrorResponse>;
       toast.error(
@@ -77,14 +76,14 @@ export default function ForgetPass() {
               </Typography>
             </Stack>
 
-             {/* ------------------ Form for password reset  ------------------*/}
+            {/* ------------------ Form for password reset  ------------------*/}
             <form onSubmit={handleSubmit(onSubmit)}>
               <Stack sx={{ width: '75%', marginInline: 'auto' }}>
                 <InputLabel sx={{ marginBlock: '.5rem' }} htmlFor="email-input">
                   Email
                 </InputLabel>
-                
-                 {/* Email input field with validation */}
+
+                {/* Email input field with validation */}
                 <TextField
                   sx={{
                     '& .MuiOutlinedInput-root': {

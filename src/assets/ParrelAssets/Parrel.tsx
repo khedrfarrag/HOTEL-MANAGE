@@ -2,4 +2,5 @@
 
 import imgage from '../react.svg';
 import imgResetpass from '../img/Rectangle 8.png';
-export { imgage, imgResetpass };
+import imgRegister from '../img/Rectangle 7.png';
+export { imgage, imgResetpass, imgRegister };

@@ -1,4 +1,4 @@
-import VisibilityIcon from '@mui/icons-material/VisibilityOff';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { Button, Link, Stack, TextField, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
@@ -16,8 +16,6 @@ import {
 import { ADMIN_Users_URL } from '../../../../constants/END-POINTS';
 import { VALIDATIONS } from '../../../../constants/VALIDATIONS';
 import Styled from './sass/ResetPass.module.scss';
-
-
 
 export default function ResetPass({ imag }: { imag: string }) {
   const navigate = useNavigate();
@@ -43,9 +41,6 @@ export default function ResetPass({ imag }: { imag: string }) {
       navigate('/AuthLayOut/login');
       console.log(response);
     } catch (error: any | unknown) {
-      console.log(error);
-      toast.error(error);
-
       const axiosError = error as AxiosError<AxiosErrorResponse>;
       toast.error(
         axiosError.response?.data.message ||
