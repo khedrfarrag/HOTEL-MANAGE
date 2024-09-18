@@ -20,15 +20,6 @@ export default function Title({
       }}
       direction="row"
     >
-      <Stack>
-        <Typography sx={{ fontSize: '1.25rem' }} variant="h4">
-          {title}
-        </Typography>
-        <Typography sx={{ fontSize: '.875rem' }} variant="h6">
-          {subTitle}
-        </Typography>
-      </Stack>
-
       {/* Title and subtitle section */}
       <Stack>
         <Typography sx={{ fontSize: '1.25rem' }} variant="h4">
@@ -38,9 +29,8 @@ export default function Title({
           {subTitle}
         </Typography>
       </Stack>
-      
 
-       {/* Button section */}
+      {/* Button section */}
       <Stack>
         <Button
           sx={{
