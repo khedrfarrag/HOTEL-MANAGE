@@ -118,8 +118,8 @@ export default function SideBar() {
 
           <MenuItem
             icon={<BedroomChildIcon />}
-            component={<Link to="/layout-Master" />}
-            className={getMenuItemClassName('/layout-Master')}
+            component={<Link to="/layout-Master/facility-list" />}
+            className={getMenuItemClassName('/layout-Master/facility-list')}
           >
             Facilities
           </MenuItem>

@@ -1,16 +1,16 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import './App.css';
 import { ToastContainer } from 'react-toastify';
-import NotFound from './modules/shared/component/notFound/NotFound';
+import './App.css';
+import ForgetPass from './modules/authontication/component/forgetPass/ForgetPass';
 import Login from './modules/authontication/component/logIn/Login.tss';
-import AuthLayOut from './modules/shared/component/authLayout/AuthLayout';
+import Register from './modules/authontication/component/register/Register';
 import ResetPass from './modules/authontication/component/resetPass/ResetPass';
 import VerifyAccount from './modules/authontication/component/verifyAccount/VerifyAccount';
-import ForgetPass from './modules/authontication/component/forgetPass/ForgetPass';
-import MasterLayOut from './modules/shared/component/masterLayout/MasterLayOut';
+import FacilitiesList from './modules/Facilities/Components/FacilitiesList/FacilitiesList';
 import HotelsList from './modules/hotels/component/hotelsList/HotelsList';
-import Register from './modules/authontication/component/register/Register';
-import Title from './modules/shared/component/Title/Title';
+import AuthLayOut from './modules/shared/component/authLayout/AuthLayout';
+import MasterLayOut from './modules/shared/component/masterLayout/MasterLayOut';
+import NotFound from './modules/shared/component/notFound/NotFound';
 
 function App() {
   const routes = createBrowserRouter([
@@ -45,7 +45,7 @@ function App() {
           index: true,
           element: <HotelsList />,
         },
-        { path: 'title', element: <Title /> },
+        { path: 'facility-list', element: <FacilitiesList /> },
       ],
     },
   ]);
