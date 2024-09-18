@@ -1,7 +1,14 @@
 import { Stack, Typography } from '@mui/material';
 import Button from '@mui/material/Button';
-
-export default function Title() {
+import { TitleData } from '../../../../Interfaces/Title/TitleResponse';
+import { useNavigate } from 'react-router-dom';
+export default function Title({
+  title,
+  subTitle,
+  buttonText,
+  linkPath,
+}: TitleData) {
+  const navigate = useNavigate();
   return (
     <Stack
       sx={{
@@ -12,21 +19,38 @@ export default function Title() {
       }}
       direction="row"
     >
+      {' '}
       <Stack>
-        <Typography variant="h4">Facilities Table Details</Typography>
-        <Typography variant="h6">You can check all details</Typography>
-      </Stack>
-
+        {' '}
+        <Typography sx={{ fontSize: '1.25rem' }} variant="h4">
+          {' '}
+          {title}{' '}
+        </Typography>{' '}
+        <Typography sx={{ fontSize: '.875rem' }} variant="h6">
+          {' '}
+          {subTitle}{' '}
+        </Typography>{' '}
+      </Stack>{' '}
       <Stack>
+        {' '}
         <Button
-          sx={{ backgroundColor: 'rgba(32, 63, 199, 1)' }}
+          sx={{
+            backgroundColor: 'rgba(32, 63, 199, 1)',
+            fontSize: { xs: '0.75rem', md: '1rem', xl: '0.875rem' },
+            padding: {
+              xs: '0.25rem 0.5rem',
+              md: '0.5rem 1rem',
+              xl: '0.375rem 0.75rem',
+            },
+          }}
           variant="contained"
           disableRipple
-          disableElevation
+          onClick={() => (linkPath ? navigate(`${linkPath}`) : '')}
         >
-          Add New Facility
-        </Button>
-      </Stack>
+          {' '}
+          {buttonText}{' '}
+        </Button>{' '}
+      </Stack>{' '}
     </Stack>
   );
 }
