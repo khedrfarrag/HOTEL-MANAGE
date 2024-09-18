@@ -3,7 +3,7 @@ import './App.module.scss';
 import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import NotFound from './modules/shared/component/notFound/NotFound';
-import Login from './modules/authontication/component/logIn/Login.tss';
+import Login from './modules/authontication/component/logIn/Login';
 import ResetPass from './modules/authontication/component/resetPass/ResetPass';
 import VerifyAccount from './modules/authontication/component/verifyAccount/VerifyAccount';
 import Register from './modules/authontication/component/register/Register';
