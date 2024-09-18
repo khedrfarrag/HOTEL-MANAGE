@@ -1,5 +1,6 @@
 import { Stack, Typography } from '@mui/material';
 import Button from '@mui/material/Button';
+// Interface for TypeScript type-checking
 import { TitleData } from '../../../../Interfaces/Title/TitleResponse';
 import { useNavigate } from 'react-router-dom';
 export default function Title({
@@ -9,6 +10,7 @@ export default function Title({
   linkPath,
 }: TitleData) {
   const navigate = useNavigate();
+
   return (
     <Stack
       sx={{
@@ -19,20 +21,20 @@ export default function Title({
       }}
       direction="row"
     >
-      {' '}
+
+      {/* Title and subtitle section */}
       <Stack>
-        {' '}
         <Typography sx={{ fontSize: '1.25rem' }} variant="h4">
-          {' '}
-          {title}{' '}
-        </Typography>{' '}
+          {title}
+        </Typography>
         <Typography sx={{ fontSize: '.875rem' }} variant="h6">
-          {' '}
-          {subTitle}{' '}
-        </Typography>{' '}
-      </Stack>{' '}
+          {subTitle}
+        </Typography>
+      </Stack>
+      
+
+       {/* Button section */}
       <Stack>
-        {' '}
         <Button
           sx={{
             backgroundColor: 'rgba(32, 63, 199, 1)',
@@ -45,12 +47,13 @@ export default function Title({
           }}
           variant="contained"
           disableRipple
+          // Navigate if linkPath is provided
           onClick={() => (linkPath ? navigate(`${linkPath}`) : '')}
         >
-          {' '}
-          {buttonText}{' '}
-        </Button>{' '}
-      </Stack>{' '}
+          {/* Text inside the button */}
+          {buttonText}
+        </Button>
+      </Stack>
     </Stack>
   );
 }
