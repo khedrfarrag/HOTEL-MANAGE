@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import axios, { AxiosError } from 'axios';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AxiosErrorResponse } from '../../../../Interfaces/AuthResponse/AuthResponse';
 import { ADMIN_RoomFacility_URL } from '../../../../constants/END-POINTS';
@@ -34,7 +34,7 @@ export default function BasicModal({
     formState: { errors },
     reset, 
   } = useForm<RoomFacilities>({ defaultValues: { name: '' } });
-
+  const navigate = useNavigate()
   const location = useLocation();
   const status = location.state?.type === 'edit';
   const listData = location.state?.listData;
@@ -90,8 +90,8 @@ export default function BasicModal({
             </Typography>
             <IconButton
               onClick={() => {
-                reset();
                 handleClose();
+                navigate("/layout-Master/facility-list");
               }}
               aria-label="cancel"
               size="large"
