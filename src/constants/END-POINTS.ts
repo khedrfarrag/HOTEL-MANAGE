@@ -13,7 +13,7 @@ const imagePathHelper = (path:any) => {
 };
 
 // ........................................................................................Collections
-const BASE_URL_COLLECTION = `https://api.getpostman.com/collections`;
+const BASE_URL_COLLECTION = `https://upskilling-egypt.com:3000`;
 
 export const COLLECTIONS_URL = {
   createCollection: `${BASE_URL_COLLECTION}`,
@@ -24,7 +24,7 @@ export const COLLECTIONS_URL = {
 };
 
 // ................................................................................................baseURL
-const BASE_URL = 'https://e-commerce-node-js-zeta.vercel.app/api/v0/';
+const BASE_URL = 'https://upskilling-egypt.com:3000/api/v0';
 
 // ........................................................................................admin
 // .....................................................admin-Users

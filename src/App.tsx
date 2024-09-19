@@ -1,5 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 import './App.css';
 import ForgetPass from './modules/authontication/component/forgetPass/ForgetPass';
 import Login from './modules/authontication/component/logIn/Login.tss';
@@ -46,6 +47,7 @@ function App() {
           element: <HotelsList />,
         },
         { path: 'facility-list', element: <FacilitiesList /> },
+        { path: 'facility-edit/:id', element: <FacilitiesList /> },
       ],
     },
   ]);

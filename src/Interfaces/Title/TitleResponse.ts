@@ -3,4 +3,5 @@ export interface TitleData {
   subTitle: string;
   buttonText?: string;
   linkPath?: string;
+  handleOpen?():void
 }
