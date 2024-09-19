@@ -1,11 +1,10 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.module.scss';
 import { ToastContainer } from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css";
+import 'react-toastify/dist/ReactToastify.css';
 import NotFound from './modules/shared/component/notFound/NotFound';
 import Login from './modules/authontication/component/logIn/Login';
 import ResetPass from './modules/authontication/component/resetPass/ResetPass';
-import VerifyAccount from './modules/authontication/component/verifyAccount/VerifyAccount';
 import Register from './modules/authontication/component/register/Register';
 import AuthLayOut from './modules/shared/component/authLayout/AuthLayout';
 import LandingPage from './modules/uers/components/LandingPage/LandingPage';
@@ -25,6 +24,7 @@ import AddOrEditRooms from './modules/admin/components/rooms/AddOrEditRooms';
 import UsersList from './modules/admin/components/usersList/UsersList';
 import { imgResetpass } from './assets/ParrelAssets/Parrel';
 import ForgetPass from './modules/authontication/component/forgetPassword/forgetPassword';
+import ProtectedRoute from './modules/shared/component/protectedRoute/ProtectedRoute';
 
 function App() {
   const routes = createBrowserRouter([
@@ -47,18 +47,22 @@ function App() {
           element: <ResetPass imag={imgResetpass} />,
         },
         { path: 'register', element: <Register /> },
-        { path: 'verify-account', element: <VerifyAccount /> },
+        // { path: 'verify-account', element: <VerifyAccount /> },
         {
           path: 'forget-password',
-          element: <ForgetPass/>,
-          },
-        
+          element: <ForgetPass />,
+        },
       ],
     },
     {
       // --------------------------------------User-Master-Layout
       path: '/',
-      element: <UserMasterLayout />,
+      element: (
+        <ProtectedRoute>
+          <UserMasterLayout />
+        </ProtectedRoute>
+      ),
+
       errorElement: <NotFound />,
       children: [
         {
@@ -95,8 +99,13 @@ function App() {
     {
       // --------------------------------------admin-Master-Layout
       path: '/dashBaord',
-      element: <AdminMasterLayout />,
+      element: (
+        // <ProtectedRoute>
+        <AdminMasterLayout />
+        // </ProtectedRoute>
+      ),
       errorElement: <NotFound />,
+
       children: [
         {
           index: true,

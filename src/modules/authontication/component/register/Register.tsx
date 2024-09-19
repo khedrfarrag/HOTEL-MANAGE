@@ -16,7 +16,7 @@ import {
 } from '../../../../Interfaces/AuthResponse';
 import { useForm } from 'react-hook-form';
 import { ADMIN_Users_URL } from '../../../../constants/END-POINTS';
-import axios, { AxiosError, toFormData } from 'axios';
+import axios, { AxiosError } from 'axios';
 import { toast } from 'react-toastify';
 import { imgRegister } from '../../../../assets/ParrelAssets/Parrel';
 // import UnstyledSelectIntroduction from '../../../shared/component/TextFieldSelect/Select';
