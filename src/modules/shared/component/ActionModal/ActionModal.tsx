@@ -32,9 +32,9 @@ export default function BasicModal({
     register,
     handleSubmit,
     formState: { errors },
-    reset, 
+    reset,
   } = useForm<RoomFacilities>({ defaultValues: { name: '' } });
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const location = useLocation();
   const status = location.state?.type === 'edit';
   const listData = location.state?.listData;
@@ -91,7 +91,8 @@ export default function BasicModal({
             <IconButton
               onClick={() => {
                 handleClose();
-                navigate("/layout-Master/facility-list");
+                reset({ name: '' });
+                navigate('/layout-Master/facility-list');
               }}
               aria-label="cancel"
               size="large"
@@ -125,4 +126,3 @@ export default function BasicModal({
     </div>
   );
 }
-
