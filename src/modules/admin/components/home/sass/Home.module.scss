@@ -1,5 +1,91 @@
-body {
-  width: 100%;
-  height: 100vh;
-  background-color: aqua;
+.Contaner {
+  overflow-x: hidden;
+}
+
+.Rooms {
+  animation: Rooms 1.1s forwards;
+}
+@keyframes Rooms {
+  from {
+    position: relative;
+    left: -100%;
+    opacity: 0.1;
+  }
+  to {
+    position: relative;
+    left: 0%;
+    opacity: 1;
+  }
+}
+
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+.facilities {
+  // transform: translate(-100%);
+  animation: facilities 1.5s backwards;
+}
+@keyframes facilities {
+  from {
+    transform: scale(0.2);
+    opacity: 0.1;
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+.ads {
+  // transform: translate(-100%);
+  animation: ads 1.1s backwards;
+}
+@keyframes ads {
+  from {
+    position: relative;
+    right: -100%;
+    opacity: 0.1;
+  }
+  to {
+    position: relative;
+    right: 0%;
+    opacity: 1;
+  }
+}
+
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+.bookings {
+  // transform: translate(-100%);
+  animation: bookings 1.1s backwards;
+  animation-delay: 2s;
+}
+@keyframes bookings {
+  from {
+    position: relative;
+    left: -100%;
+    opacity: 0.1;
+  }
+  to {
+    position: relative;
+    left: 0%;
+    opacity: 1;
+  }
+}
+
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+.Users {
+  // transform: translate(-100%);
+  animation: Users 1.1s backwards;
+  animation-delay: 2s;
+}
+@keyframes Users {
+  from {
+    position: relative;
+    right: -100%;
+    opacity: 0.1;
+  }
+  to {
+    position: relative;
+    right: 0%;
+    opacity: 1;
+  }
 }

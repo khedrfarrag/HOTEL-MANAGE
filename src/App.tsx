@@ -57,11 +57,7 @@ function App() {
     {
       // --------------------------------------User-Master-Layout
       path: '/',
-      element: (
-        <ProtectedRoute>
-          <UserMasterLayout />
-        </ProtectedRoute>
-      ),
+      element: <UserMasterLayout />,
 
       errorElement: <NotFound />,
       children: [
@@ -99,11 +95,7 @@ function App() {
     {
       // --------------------------------------admin-Master-Layout
       path: '/dashBaord',
-      element: (
-        // <ProtectedRoute>
-        <AdminMasterLayout />
-        // </ProtectedRoute>
-      ),
+      element: <AdminMasterLayout />,
       errorElement: <NotFound />,
 
       children: [

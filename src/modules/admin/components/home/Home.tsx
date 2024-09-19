@@ -10,32 +10,32 @@ import axios from 'axios';
 import { ADMIN_Dashboard_URL } from '../../../../constants/END-POINTS';
 import CountUp from 'react-countup';
 import { PieValueType } from '@mui/x-charts/models/seriesType/pie';
+type Typecharts = {
+  data: {
+    rooms: number;
+    facilities: number;
+    ads: number;
+    bookings: {
+      completed: string;
+      pending: string;
+    };
+    users: {
+      user: number;
+      admin: number;
+    };
+  };
+};
 export default function Home() {
+  const [Datacharts, setDatacharts] = useState<Typecharts>();
   // <<<<<<<<<<<<<<<<<<<<<<<<<<<charts using >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   const [highlightedItem, setHighLightedItem] =
     React.useState<HighlightItemData | null>(null);
-  type Typecharts = {
-    data: {
-      rooms: number;
-      facilities: number;
-      ads: number;
-    };
-    bookings: {
-      completed: PieValueType;
-      pending: PieValueType;
-    };
-    users: {
-      user: PieValueType;
-      admin: PieValueType;
-    };
-  };
 
-  const [Datacharts, setDatacharts] = useState<Typecharts>();
   const getDashbord = React.useCallback(async () => {
     try {
       const response = await axios.get<Typecharts>(ADMIN_Dashboard_URL.Charts, {
         headers: {
-          Authorization: `Bearer${localStorage.getItem('userToken')}`,
+          Authorization: `Bearer ${localStorage.getItem('userToken')}`,
         },
       });
       setDatacharts(response?.data);
@@ -47,10 +47,47 @@ export default function Home() {
   useEffect(() => {
     getDashbord();
   }, [getDashbord]);
+  //<<<<<<<<<<<<<<<<<<<<<<<<<this func to charts Users >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  const barChartsProps: BarChartProps = {
+    series: [
+      {
+        data: [+Datacharts?.data?.users?.user, +Datacharts?.data?.users?.admin],
+        id: 'sync',
+        highlightScope: { highlight: 'item', fade: 'global' },
+      },
+    ],
+    xAxis: [{ scaleType: 'band', data: ['user', 'admin'] }],
+    height: 300,
+    slotProps: {
+      legend: {
+        hidden: true,
+      },
+    },
+  };
+  //<<<<<<<<<<<<<<<<<<<<<<<<<this func to charts Users >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
+  const pieChartProps: PieChartProps = {
+    series: [
+      {
+        id: 'sync',
+        data: [
+          { value: Datacharts?.data.users.user, label: 'user', id: 'user' },
+          { value: Datacharts?.data.users.admin, label: 'admin', id: 'admin' },
+        ],
+        highlightScope: { highlight: 'item', fade: 'global' },
+      },
+    ],
+    height: 300,
+    slotProps: {
+      legend: {
+        hidden: true,
+      },
+    },
+  };
+  //<<<<<<<<<<<<<<<<<<<<<<<<<End func charts Users >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   return (
     <>
-      <Box sx={{ flexGrow: 1 }}>
+      <Box sx={{ flexGrow: 1 }} className={Styled.Contaner}>
         <Grade
           width={'80%'}
           height={'140px'}
@@ -62,6 +99,7 @@ export default function Home() {
           {/* {Array.from(Array(3)).map((_, index) => ( */}
           <Grade
             container
+            className={Styled.Rooms}
             // key={index}
             size={{ md: 4, sm: 8, xs: 12 }}
             borderRadius={3}
@@ -99,6 +137,7 @@ export default function Home() {
 
           <Grade
             container
+            className={Styled.facilities}
             // key={index}
             size={{ md: 4, sm: 8, xs: 12 }}
             borderRadius={3}
@@ -118,7 +157,7 @@ export default function Home() {
                 <Typography variant="h4" fontWeight={400}>
                   <CountUp
                     delay={1.8}
-                    end={Datacharts?.data.facilities}
+                    end={Datacharts?.data?.facilities}
                     duration={2.8}
                   />
                 </Typography>
@@ -134,6 +173,7 @@ export default function Home() {
           {/*  */}
           <Grade
             container
+            className={Styled.ads}
             // key={index}
             size={{ md: 4, sm: 8, xs: 12 }}
             borderRadius={3}
@@ -153,7 +193,7 @@ export default function Home() {
                 <Typography variant="h4" fontWeight={400}>
                   <CountUp
                     delay={1.8}
-                    end={Datacharts?.data.ads}
+                    end={Datacharts?.data?.ads}
                     duration={2.8}
                   />
                 </Typography>
@@ -178,22 +218,21 @@ export default function Home() {
           direction={{ sm: 'row', xs: 'row', md: 'row' }}
           justifyContent={'space-between'}
         >
-          <Stack width={{ md: '50%', xs: '100%' }}>
+          <Stack width={{ md: '50%', xs: '100%' }} className={Styled.bookings}>
             {Datacharts && (
               <PieChart
                 series={[
                   {
                     data: [
                       {
-                        id: Datacharts?.bookings?.completed?.id,
-                        value: Datacharts?.bookings?.completed?.value,
-                        label: Datacharts?.bookings?.completed?.label,
+                        id: 0,
+                        value: +Datacharts?.data?.bookings.completed,
+                        label: 'completed',
                       },
-
                       {
-                        id: Datacharts.bookings?.pending?.id,
-                        value: Datacharts?.bookings?.pending?.value,
-                        label: Datacharts?.bookings?.pending?.label,
+                        id: 1,
+                        value: +Datacharts?.data?.bookings.pending,
+                        label: 'pending',
                       },
                     ],
                   },
@@ -203,66 +242,28 @@ export default function Home() {
               />
             )}
           </Stack>
-          <Stack
-            direction={{ xs: 'row', md: 'row' }}
-            spacing={1}
-            marginTop={10}
-            width={{ md: '45%', xs: '100%', sm: '100%' }}
-          >
-            <BarChart
-              {...barChartsProps}
-              highlightedItem={highlightedItem}
-              onHighlightChange={setHighLightedItem}
-            />
-            <PieChart
-              {...pieChartProps}
-              highlightedItem={highlightedItem}
-              onHighlightChange={setHighLightedItem}
-            />
-          </Stack>
-          {/* {data} */}
-          <Stack></Stack>
+          {Datacharts && (
+            <Stack
+              className={Styled.Users}
+              direction={{ xs: 'row', md: 'row' }}
+              spacing={1}
+              marginTop={10}
+              width={{ md: '45%', xs: '100%', sm: '100%' }}
+            >
+              <BarChart
+                {...barChartsProps}
+                highlightedItem={highlightedItem}
+                onHighlightChange={setHighLightedItem}
+              />
+              <PieChart
+                {...pieChartProps}
+                highlightedItem={highlightedItem}
+                onHighlightChange={setHighLightedItem}
+              />
+            </Stack>
+          )}
         </Grade>
       </Box>
     </>
   );
 }
-
-const barChartsProps: BarChartProps = {
-  series: [
-    {
-      data: [3, 4, 1, 6, 5],
-      id: 'sync',
-      highlightScope: { highlight: 'item', fade: 'global' },
-    },
-  ],
-  xAxis: [{ scaleType: 'band', data: ['A', 'B', 'C', 'D', 'E'] }],
-  height: 300,
-  slotProps: {
-    legend: {
-      hidden: true,
-    },
-  },
-};
-
-const pieChartProps: PieChartProps = {
-  series: [
-    {
-      id: 'sync',
-      data: [
-        { value: 3, label: 'A', id: 'A' },
-        { value: 4, label: 'B', id: 'B' },
-        { value: 1, label: 'C', id: 'C' },
-        { value: 6, label: 'D', id: 'D' },
-        { value: 5, label: 'E', id: 'E' },
-      ],
-      highlightScope: { highlight: 'item', fade: 'global' },
-    },
-  ],
-  height: 300,
-  slotProps: {
-    legend: {
-      hidden: true,
-    },
-  },
-};
