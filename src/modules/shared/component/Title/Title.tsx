@@ -1,15 +1,14 @@
 import { Stack, Typography } from '@mui/material';
 import Button from '@mui/material/Button';
 import { TitleData } from '../../../../Interfaces/Title/TitleResponse';
-import { useNavigate } from 'react-router-dom';
 
 export default function Title({
   title,
   subTitle,
   buttonText,
-  linkPath,
+  handleOpen,
 }: TitleData) {
-  const navigate = useNavigate();
+  
   return (
     <Stack
       sx={{
@@ -48,7 +47,7 @@ export default function Title({
           }}
           variant="contained"
           disableRipple
-          onClick={() => (linkPath ? navigate(`${linkPath}`) : '')}
+          onClick={handleOpen}
         >
           {buttonText}
         </Button>
