@@ -90,6 +90,7 @@ export default function BasicModal({
             </Typography>
             <IconButton
               onClick={() => {
+                reset();
                 handleClose();
               }}
               aria-label="cancel"
