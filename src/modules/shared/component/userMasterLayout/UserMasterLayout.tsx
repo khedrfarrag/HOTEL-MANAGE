@@ -16,7 +16,6 @@ export default function UserMasterLayout() {
           <Outlet />
         </div>
       </div>
-      ;
     </>
   );
 }

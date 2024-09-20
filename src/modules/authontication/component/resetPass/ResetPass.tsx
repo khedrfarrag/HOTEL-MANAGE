@@ -57,7 +57,10 @@ export default function ResetPass({ imag }: { imag: string }) {
     <>
       <Box sx={{ width: '90%', margin: 'auto' }}>
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 5 }}>
-          <Grid size={{ md: 6, sm: 6, xs: 12 }}>
+          <Grid
+            size={{ md: 6, sm: 6, xs: 12 }}
+            className={Styled.contanerInput}
+          >
             <Stack spacing={2}>
               <Typography variant="h6" className={Styled.Herohead}>
                 <span className={Styled.mainheader}>Stay</span>cation.
@@ -195,7 +198,10 @@ export default function ResetPass({ imag }: { imag: string }) {
               </form>
             </Stack>
           </Grid>
-          <Grid size={{ md: 6, sm: 6, xs: 12 }}>
+          <Grid
+            size={{ md: 6, sm: 6, xs: 12 }}
+            className={Styled.contanerimage}
+          >
             <Stack className={Styled.imagStyle}>
               <img src={imag} alt="image-reset" />
               <Stack className={Styled.Titleimg}>

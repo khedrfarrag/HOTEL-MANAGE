@@ -1,10 +1,6 @@
-
-import { Outlet } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 
 export default function AuthLayOut() {
-  return (
-    <>
-      <Outlet />
-    </>
-  );
+  const token = localStorage.getItem('token');
+  return <>{token ? <Navigate to={'/'} /> : <Outlet />}</>;
 }

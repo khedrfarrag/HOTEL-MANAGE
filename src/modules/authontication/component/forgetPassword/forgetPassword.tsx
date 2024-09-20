@@ -55,7 +55,7 @@ export default function ForgetPass() {
   return (
     <>
       <Box sx={{ width: '100%' }}>
-        <Grid container spacing={2}>
+        <Grid container spacing={2} className={Styles.contanerInput}>
           <Grid size={{ xs: 12, md: 6 }}>
             <Stack
               sx={{ width: '75%', marginInline: 'auto', marginBlock: '6rem' }}
@@ -123,7 +123,7 @@ export default function ForgetPass() {
             </form>
           </Grid>
 
-          <Grid size={{ xs: 12, md: 6 }}>
+          <Grid size={{ xs: 12, md: 6 }} className={Styles.contanerimage}>
             <Stack
               sx={{ borderRadius: '1rem' }}
               className={Styles['bg-forget-pass']}

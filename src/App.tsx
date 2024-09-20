@@ -71,11 +71,19 @@ function App() {
         },
         {
           path: 'booking',
-          element: <Booking />,
+          element: (
+            <ProtectedRoute>
+              <Booking />,
+            </ProtectedRoute>
+          ),
         },
         {
           path: 'change-Pass',
-          element: <ChangePass />,
+          element: (
+            <ProtectedRoute>
+              <ChangePass />,
+            </ProtectedRoute>
+          ),
         },
         {
           path: 'details-Page',
@@ -95,7 +103,11 @@ function App() {
     {
       // --------------------------------------admin-Master-Layout
       path: '/dashBaord',
-      element: <AdminMasterLayout />,
+      element: (
+        <ProtectedRoute>
+          <AdminMasterLayout />,
+        </ProtectedRoute>
+      ),
       errorElement: <NotFound />,
 
       children: [

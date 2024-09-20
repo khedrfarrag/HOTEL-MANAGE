@@ -63,3 +63,33 @@
     color: var(--h3);
   }
 }
+
+// animation>>>>>>>>>>>>>>>>>>>
+
+.contanerInput {
+  position: absolute;
+  left: 5px;
+  animation: resetInput 1s alternate backwards;
+  animation-delay: 1s;
+}
+.contanerimage {
+  position: absolute;
+  right: 5px;
+  animation: resetImage 1s alternate backwards;
+}
+@keyframes resetInput {
+  from {
+    left: -50%;
+  }
+  to {
+    left: 5px;
+  }
+}
+@keyframes resetImage {
+  from {
+    right: -50%;
+  }
+  to {
+    right: 5px;
+  }
+}
