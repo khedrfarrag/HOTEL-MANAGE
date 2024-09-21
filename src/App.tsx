@@ -26,6 +26,11 @@ import UsersList from './modules/admin/components/usersList/UsersList';
 import { imgResetpass } from './assets/ParrelAssets/Parrel';
 import ForgetPass from './modules/authontication/component/forgetPassword/forgetPassword';
 
+// const theme = createTheme({
+//   direction: 'rtl', // or 'ltr' depending on your app's locale
+//   // other theme settings
+// });
+
 function App() {
   const routes = createBrowserRouter([
     {
