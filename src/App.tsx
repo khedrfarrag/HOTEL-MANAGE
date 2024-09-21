@@ -18,7 +18,7 @@ import AdminMasterLayout from './modules/shared/component/adminMasterLayout/Admi
 import Home from './modules/admin/components/home/Home';
 import Ads from './modules/admin/components/ads/Ads';
 import BookingList from './modules/admin/components/bookingList/BookingList';
-import FacilitiesList from './modules/admin/components/facilitiesList/FacilitiesList';
+import FacilitiesList from './modules/admin/components/Facilities/Components/FacilitiesList/FacilitiesList';
 import RoomsList from './modules/admin/components/roomList/RoomsList';
 import AddOrEditRooms from './modules/admin/components/rooms/AddOrEditRooms';
 import UsersList from './modules/admin/components/usersList/UsersList';
@@ -131,6 +131,7 @@ function App() {
           path: 'facilities-List',
           element: <FacilitiesList />,
         },
+        { path: 'facility-edit/:id', element: <FacilitiesList /> },
         {
           path: 'room-list',
           element: <RoomsList />,

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Styled from './sass/Home.module.scss';
 import Grade from '@mui/material/Grid2';
 import { Box, Stack, Typography } from '@mui/material';
@@ -9,8 +9,6 @@ import { PieChart, PieChartProps } from '@mui/x-charts/PieChart';
 import axios from 'axios';
 import { ADMIN_Dashboard_URL } from '../../../../constants/END-POINTS';
 import CountUp from 'react-countup';
-import { PieValueType } from '@mui/x-charts/models/seriesType/pie';
-import { AuthContext } from '../../../../context/AuthonticationContext';
 type Typecharts = {
   data: {
     rooms: number;
@@ -28,8 +26,6 @@ type Typecharts = {
 };
 
 export default function Home() {
-  const { userData, saveUserData }: any = useContext(AuthContext);
-
   const [Datacharts, setDatacharts] = useState<Typecharts>();
   // <<<<<<<<<<<<<<<<<<<<<<<<<<<charts using >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   const [highlightedItem, setHighLightedItem] =
@@ -51,7 +47,6 @@ export default function Home() {
   useEffect(() => {
     getDashbord();
   }, [getDashbord]);
-  console.log(userData);
   //<<<<<<<<<<<<<<<<<<<<<<<<<this func to charts Users >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   const barChartsProps: BarChartProps = {
     series: [
@@ -89,7 +84,6 @@ export default function Home() {
       },
     },
   };
-  console.log(userData);
 
   //<<<<<<<<<<<<<<<<<<<<<<<<<End func charts Users >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   return (

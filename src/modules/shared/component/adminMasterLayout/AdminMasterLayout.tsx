@@ -2,21 +2,17 @@ import React from 'react';
 import SideBar from '../sideBar/SideBar';
 import NavBar from '../navBar/NavBar';
 import { Outlet } from 'react-router-dom';
+import { Stack } from '@mui/material';
 
 export default function AdminMasterLayout() {
   return (
     <>
-      {' '}
-      <div className="d-flex">
-        <div>
-          <SideBar />
-        </div>
-        <div>
-          <NavBar />
+      <Stack direction="row" sx={{ display: 'flex' }}>
+        <SideBar />
+        <Stack sx={{ flexGrow: 1, display: 'flex', px: { xs: 1, sm: 2 } }}>
           <Outlet />
-        </div>
-      </div>
-      ;
+        </Stack>
+      </Stack>
     </>
   );
 }
