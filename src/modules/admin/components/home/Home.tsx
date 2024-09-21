@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Styled from './sass/Home.module.scss';
+import Styled from './sass/Home.module.css';
 import Grade from '@mui/material/Grid2';
 import { Box, Stack, Typography } from '@mui/material';
 import icon from './img/icons.svg';

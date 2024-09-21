@@ -8,10 +8,12 @@
 body {
   overflow-x: hidden;
 }
+
 .contanerimg {
   position: relative;
   animation: animitrnsimg 1s alternate backwards;
 }
+
 .contanerContent {
   position: relative;
   animation: animitrnscontent 1s alternate backwards;
@@ -20,15 +22,16 @@ body {
 
 .imagStyle {
   height: calc(100vh - 20px);
-  img {
-    width: 100%;
-    height: 100%;
-  }
+}
+.imagStyle img {
+  width: 100%;
+  height: 100%;
 }
 
 .Herohead {
   color: var(--Titlehead-color);
 }
+
 .mainheader {
   color: var(--Title-color);
 }
@@ -38,29 +41,31 @@ body {
   color: var(--Link-color) !important;
   margin-left: 10px !important;
 }
+
 .bttnSub {
   background-color: var(--Title-color) !important;
 }
 
 .inputPass {
   position: relative;
-  .showicon {
-    position: absolute !important;
-    right: 10px !important;
-    top: 20% !important;
-    transform: translateY(-50%);
-    cursor: pointer;
-  }
 }
+.inputPass .showicon {
+  position: absolute !important;
+  right: 10px !important;
+  top: 20% !important;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
 .inputConfPass {
   position: relative;
-  .showicon {
-    position: absolute !important;
-    right: 10px !important;
-    top: 50% !important;
-    transform: translateY(-50%);
-    cursor: pointer;
-  }
+}
+.inputConfPass .showicon {
+  position: absolute !important;
+  right: 10px !important;
+  top: 50% !important;
+  transform: translateY(-50%);
+  cursor: pointer;
 }
 
 .Titleimg {
@@ -68,15 +73,14 @@ body {
   position: absolute;
   bottom: 10%;
   right: -10%;
-  h3 {
-    color: var(--h3);
-  }
-  h6 {
-    color: var(--h3);
-  }
+}
+.Titleimg h3 {
+  color: var(--h3);
+}
+.Titleimg h6 {
+  color: var(--h3);
 }
 
-// animation style
 @keyframes animitrnsimg {
   from {
     transform: translateX(50%);
@@ -96,4 +100,4 @@ body {
     transform: translateX(0);
     opacity: 1;
   }
-}
+}/*# sourceMappingURL=Login.module.css.map */

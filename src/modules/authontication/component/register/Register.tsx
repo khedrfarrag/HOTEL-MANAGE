@@ -1,7 +1,7 @@
 import { Box, Button, Link, Stack, TextField, Typography } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import React, { useState } from 'react';
-import Style from './sass/Register.module.scss';
+import Style from './sass/Register.module.css';
 import {
   emailValidation,
   PasswordValidation,
@@ -113,7 +113,7 @@ export default function Register() {
             <Stack margin={5}>
               <Stack>
                 <Typography variant="h3" fontSize={30} fontWeight={600}>
-                  Reset Password
+                  Sign up
                 </Typography>
                 <Typography variant="body1">
                   If you already have an account register
@@ -281,7 +281,7 @@ export default function Register() {
             <Stack className={Style.imagStyle}>
               <img src={imgRegister} alt="image-reset" />
               <Stack className={Style.Titleimg}>
-                <Typography variant="h3">Reset Password</Typography>
+                <Typography variant="h3">Sign up to Roamhome</Typography>
                 <Typography variant="h6">Homes as unique as you.</Typography>
               </Stack>
             </Stack>
