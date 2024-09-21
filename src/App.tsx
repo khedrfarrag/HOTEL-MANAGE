@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.module.scss';
 import { ToastContainer } from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css";
+import 'react-toastify/dist/ReactToastify.css';
 import NotFound from './modules/shared/component/notFound/NotFound';
 import Login from './modules/authontication/component/logIn/Login';
 import ResetPass from './modules/authontication/component/resetPass/ResetPass';
@@ -50,9 +50,8 @@ function App() {
         { path: 'verify-account', element: <VerifyAccount /> },
         {
           path: 'forget-password',
-          element: <ForgetPass/>,
-          },
-        
+          element: <ForgetPass />,
+        },
       ],
     },
     {
