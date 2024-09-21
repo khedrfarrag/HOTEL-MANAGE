@@ -1,9 +1,14 @@
+:root {
+  --color-menu: rgba(32, 63, 199, 1);
+}
 .contaner {
-  height: 100vh !important;
+  // height: 100vh !important;
   .Sidebar {
     height: 100% !important;
     .mainMenu {
-      margin-top: 50px;
+      // margin-top: 50px;
+      background-color: var(--color-menu) !important;
+      height: 100% !important;
     }
   }
 }
