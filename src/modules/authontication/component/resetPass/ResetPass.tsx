@@ -15,7 +15,7 @@ import {
 } from '../../../../Interfaces/AuthResponse';
 import { ADMIN_Users_URL } from '../../../../constants/END-POINTS';
 import { VALIDATIONS } from '../../../../constants/VALIDATIONS';
-import Styled from './sass/ResetPass.module.scss';
+import Styled from './sass/ResetPass.module.css';
 
 export default function ResetPass({ imag }: { imag: string }) {
   const navigate = useNavigate();

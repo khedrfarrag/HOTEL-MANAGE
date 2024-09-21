@@ -12,7 +12,7 @@ import {
   PasswordValidation,
 } from '../../../../constants/VALIDATIONS';
 import { LoginFormData } from '../../../../Interfaces/AuthResponse/AuthResponse';
-import Style from './sass/Login.module.scss';
+import Style from './sass/Login.module.css';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useContext, useState } from 'react';
@@ -166,7 +166,7 @@ export default function Login() {
             <Stack className={Style.imagStyle}>
               <img src={imgLogin} alt="image-reset" />
               <Stack className={Style.Titleimg}>
-                <Typography variant="h3">Reset Password</Typography>
+                <Typography variant="h3">Sign in to Roamhome</Typography>
                 <Typography variant="h6">Homes as unique as you.</Typography>
               </Stack>
             </Stack>

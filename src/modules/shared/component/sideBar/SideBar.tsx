@@ -7,11 +7,10 @@ import GroupIcon from '@mui/icons-material/Group';
 import HomeIcon from '@mui/icons-material/Home';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import { Stack } from '@mui/material';
-import Style from './sass/Sidbar.module.scss';
+import Style from './sass/Sidbar.module.css';
 import { useEffect, useState } from 'react';
 import { Menu, MenuItem, Sidebar } from 'react-pro-sidebar';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { SpaceBar } from '@mui/icons-material';
 
 export default function SideBar() {
   const navigate = useNavigate();
@@ -51,7 +50,7 @@ export default function SideBar() {
             <MenuItem
               icon={<HomeIcon />}
               component={<Link to="/dashBaord" />}
-              className={getMenuItemClassName('/dashboard')}
+              className={getMenuItemClassName('/dashBaord/home')}
             >
               Home
             </MenuItem>
@@ -59,7 +58,7 @@ export default function SideBar() {
             <MenuItem
               icon={<GroupIcon />}
               component={<Link to="users-List" />}
-              // className={getMenuItemClassName('/layout-Master')}
+              className={getMenuItemClassName('/dashBaord/users-List')}
             >
               Users
             </MenuItem>
@@ -67,7 +66,7 @@ export default function SideBar() {
             <MenuItem
               icon={<DashboardIcon />}
               component={<Link to="room-list" />}
-              // className={getMenuItemClassName('/layout-Master')}
+              className={getMenuItemClassName('/dashBaord/room-list')}
             >
               Rooms
             </MenuItem>
@@ -75,7 +74,7 @@ export default function SideBar() {
             <MenuItem
               icon={<CalendarTodayIcon />}
               component={<Link to="ads" />}
-              // className={getMenuItemClassName('/layout-Master')}
+              className={getMenuItemClassName('/dashBaord/ads')}
             >
               Ads
             </MenuItem>
@@ -83,7 +82,7 @@ export default function SideBar() {
             <MenuItem
               icon={<EventAvailableIcon />}
               component={<Link to="booking" />}
-              // className={getMenuItemClassName('/layout-Master')}
+              className={getMenuItemClassName('/dashBaord/booking')}
             >
               Bookings
             </MenuItem>
@@ -91,7 +90,7 @@ export default function SideBar() {
             <MenuItem
               icon={<BedroomChildIcon />}
               component={<Link to="facilities-List" />}
-              // className={getMenuItemClassName('/layout-Master/facility-list')}
+              className={getMenuItemClassName('/dashBaord/facilities-List')}
             >
               Facilities
             </MenuItem>
@@ -99,7 +98,7 @@ export default function SideBar() {
             <MenuItem
               icon={<LockOpenIcon />}
               component={<Link to="change-pass" />}
-              // className={getMenuItemClassName('/layout-Master')}
+              className={getMenuItemClassName('/dashBaord/change-pass')}
             >
               Change Password
             </MenuItem>
