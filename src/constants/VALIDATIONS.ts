@@ -17,7 +17,7 @@ export const VALIDATIONS = {
   // Date pattern matching the format "DD-MM-YYYY"
   dateRegex: /\b(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-\d{4}\b/g,
 
-  discountRegex: /^[A-Za-z0-9]{4,10}\d{0,2}$/,
+  discountRegex: /^\d{2}(?!00)$/,
 };
 
 // Email validation rules used for form validation
