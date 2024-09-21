@@ -7,14 +7,11 @@ import GroupIcon from '@mui/icons-material/Group';
 import HomeIcon from '@mui/icons-material/Home';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import { Stack } from '@mui/material';
-import Style from './sass/Sidbar.module.scss';
 import { useEffect, useState } from 'react';
 import { Menu, MenuItem, Sidebar } from 'react-pro-sidebar';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { SpaceBar } from '@mui/icons-material';
+import { Link, useLocation } from 'react-router-dom';
 
 export default function SideBar() {
-  const navigate = useNavigate();
   const location = useLocation();
   const [isCollapse, setIsCollapse] = useState(true);
 
@@ -44,77 +41,82 @@ export default function SideBar() {
   }, []);
 
   return (
-    <Stack className={Style.contaner}>
-      <Sidebar collapsed={isCollapse} className={Style.Sidebar}>
-        <Menu onClick={toggleCollapse} className={Style.mainMenu}>
-          <Stack spacing={2}>
-            <MenuItem
-              icon={<HomeIcon />}
-              component={<Link to="/dashBaord" />}
-              className={getMenuItemClassName('/dashboard')}
-            >
-              Home
-            </MenuItem>
+    <Stack
+      sx={{
+        position: 'sticky',
+        top: 0,
+        bottom: 0,
+        height: '100vh',
+      }}
+      className="sidebar-container"
+    >
+      <Sidebar collapsed={isCollapse}>
+        <Menu onClick={toggleCollapse}>
+          <MenuItem
+            icon={<HomeIcon />}
+            component={<Link to="/AuthLayOut" />}
+            className={getMenuItemClassName('/AuthLayOut')}
+          >
+            Home
+          </MenuItem>
 
-            <MenuItem
-              icon={<GroupIcon />}
-              component={<Link to="users-List" />}
-              // className={getMenuItemClassName('/layout-Master')}
-            >
-              Users
-            </MenuItem>
+          <MenuItem
+            icon={<GroupIcon />}
+            component={<Link to="/dashBaord/users-List" />}
+            className={getMenuItemClassName('/dashBaord/users-List')}
+          >
+            Users
+          </MenuItem>
 
-            <MenuItem
-              icon={<DashboardIcon />}
-              component={<Link to="room-list" />}
-              // className={getMenuItemClassName('/layout-Master')}
-            >
-              Rooms
-            </MenuItem>
+          <MenuItem
+            icon={<DashboardIcon />}
+            component={<Link to="/dashBaord/room-list" />}
+            className={getMenuItemClassName('/dashBaord/room-list')}
+          >
+            Rooms
+          </MenuItem>
 
-            <MenuItem
-              icon={<CalendarTodayIcon />}
-              component={<Link to="ads" />}
-              // className={getMenuItemClassName('/layout-Master')}
-            >
-              Ads
-            </MenuItem>
+          <MenuItem
+            icon={<CalendarTodayIcon />}
+            component={<Link to="/dashBaord/ads-list" />}
+            className={getMenuItemClassName('/dashBaord/ads-list')}
+          >
+            Ads
+          </MenuItem>
 
-            <MenuItem
-              icon={<EventAvailableIcon />}
-              component={<Link to="booking" />}
-              // className={getMenuItemClassName('/layout-Master')}
-            >
-              Bookings
-            </MenuItem>
+          <MenuItem
+            icon={<EventAvailableIcon />}
+            component={<Link to="/dashBaord/booking" />}
+            className={getMenuItemClassName('/dashBaord/booking')}
+          >
+            Bookings
+          </MenuItem>
 
-            <MenuItem
-              icon={<BedroomChildIcon />}
-              component={<Link to="facilities-List" />}
-              // className={getMenuItemClassName('/layout-Master/facility-list')}
-            >
-              Facilities
-            </MenuItem>
+          <MenuItem
+            icon={<BedroomChildIcon />}
+            component={<Link to="/dashBaord/facilities-List" />}
+            className={getMenuItemClassName('/dashBaord/facilities-List')}
+          >
+            Facilities
+          </MenuItem>
 
-            <MenuItem
-              icon={<LockOpenIcon />}
-              component={<Link to="change-pass" />}
-              // className={getMenuItemClassName('/layout-Master')}
-            >
-              Change Password
-            </MenuItem>
+          <MenuItem
+            icon={<LockOpenIcon />}
+            component={<Link to="/dashBaord/change-pass" />}
+            className={getMenuItemClassName('/dashBaord/change-pass')}
+          >
+            Change Password
+          </MenuItem>
 
-            <MenuItem
-              onClick={() => {
-                localStorage.removeItem('token');
-                navigate('/');
-              }}
-              icon={<ChevronRightIcon />}
-              className="ps-menu-button"
-            >
-              Logout
-            </MenuItem>
-          </Stack>
+          <MenuItem
+            onClick={() => {
+              localStorage.removeItem('token');
+            }}
+            icon={<ChevronRightIcon />}
+            className="ps-menu-button"
+          >
+            Logout
+          </MenuItem>
         </Menu>
       </Sidebar>
     </Stack>
