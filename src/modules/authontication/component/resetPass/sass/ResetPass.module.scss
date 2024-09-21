@@ -81,8 +81,8 @@
     opacity: 0;
   }
   to {
-    transform: translateX(-50%);
-    opacity: 0;
+    transform: translateX(0%);
+    opacity: 1;
   }
 }
 @keyframes resetImage {
@@ -91,7 +91,7 @@
     opacity: 0;
   }
   to {
-    transform: translateX(50%);
-    opacity: 0;
+    transform: translateX(0%);
+    opacity: 1;
   }
 }

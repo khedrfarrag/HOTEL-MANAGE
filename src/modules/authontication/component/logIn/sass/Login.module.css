@@ -10,16 +10,14 @@ body {
 }
 
 .contanerimg {
-  position: absolute;
-  right: 5px;
+  position: relative;
   animation: animitrnsimg 1s alternate backwards;
 }
 
 .contanerContent {
-  position: absolute;
-  left: 5px;
-  animation-delay: 1s;
+  position: relative;
   animation: animitrnscontent 1s alternate backwards;
+  animation-delay: 1s;
 }
 
 .imagStyle {
@@ -85,17 +83,21 @@ body {
 
 @keyframes animitrnsimg {
   from {
-    right: -50%;
+    transform: translateX(50%);
+    opacity: 0;
   }
   to {
-    right: 0;
+    transform: translateX(0);
+    opacity: 1;
   }
 }
 @keyframes animitrnscontent {
   from {
-    left: -50%;
+    transform: translateX(-50%);
+    opacity: 0;
   }
   to {
-    left: 0;
+    transform: translateX(0);
+    opacity: 1;
   }
 }/*# sourceMappingURL=Login.module.css.map */
