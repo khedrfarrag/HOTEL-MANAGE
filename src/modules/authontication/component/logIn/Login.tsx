@@ -116,8 +116,8 @@ export default function Login() {
                       variant="outlined"
                       type={!show ? 'password' : 'text'}
                       {...register('password', {
-                        required: PasswordValidation.required,
-                        pattern: PasswordValidation.pattern,
+                        // required: PasswordValidation.required,
+                        // pattern: PasswordValidation.pattern,
                       })}
                     />
 

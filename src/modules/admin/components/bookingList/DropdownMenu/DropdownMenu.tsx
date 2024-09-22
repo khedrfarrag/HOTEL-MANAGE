@@ -7,9 +7,8 @@ import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import { Link } from 'react-router-dom';
 
 const DropdownMenu: React.FC = ({
-  BokingList,
+  // BokingList,
   handleOpenDelete,
-  list,
   handleOpen,
 }: any) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -54,7 +53,7 @@ const DropdownMenu: React.FC = ({
           sx={{ color: '#1976d2' }}
           onClick={() => console.log('hello')}
         >
-          <Link
+          {/* <Link
             onClick={handleOpen}
             to={`/dashBaord/facility-edit/${list._id}`}
             state={{ listData: list, type: 'edit' }}
@@ -62,7 +61,7 @@ const DropdownMenu: React.FC = ({
           >
             <EditOutlinedIcon color="primary" sx={{ mr: 1 }} />
             Edit
-          </Link>
+          </Link> */}
         </MenuItem>
         <MenuItem sx={{ color: '#1976d2' }} onClick={handleOpenDelete}>
           <DeleteOutlinedIcon color="primary" sx={{ mr: 1 }} />

@@ -30,8 +30,8 @@ export default function FacilitiesList() {
         ADMIN_RoomFacility_URL.deleteRoomFacilty(facilityId),
         {
           headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRkZWFmMTY0NzVlMmQ1MGRhNWFkNzYiLCJyb2xlIjoiYWRtaW4iLCJ2ZXJpZmllZCI6ZmFsc2UsImlhdCI6MTcyNjczNjc2NCwiZXhwIjoxNzI3OTQ2MzY0fQ.mlYDMSFEE3RbVMFXYXVHaWtEtB-b6kwvLlHL038kqiw`,
-          }, //${localStorage.getItem('userToken')}
+            Authorization: localStorage.getItem('token'),
+          },
         }
       );
       console.log(response);
