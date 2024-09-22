@@ -1,0 +1,91 @@
+import { TableCell, styled, tableCellClasses } from '@mui/material';
+import Paper from '@mui/material/Paper';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import { formatDate } from '../../../Hooks/formatDate/formatDate';
+import { DropdownMenuProps } from '../../../../Interfaces/Table/TableResponse';
+import DropdownMenu from '../../../shared/component/DropdownMenu/DropdownMenu';
+
+export default function TableWithAction({
+  list,
+  handleOpenDelete,
+  handleOpen,
+}: DropdownMenuProps) {
+  const StyledTableCell = styled(TableCell)(() => ({
+    [`&.${tableCellClasses.head}`]: {
+      backgroundColor: 'rgba(226, 229, 235, 1)',
+      color: 'rgba(31, 38, 62, 1)',
+      fontSize: '1rem',
+    },
+    [`&.${tableCellClasses.body}`]: {
+      fontSize: 14,
+    },
+  }));
+
+  const StyledTableRow = styled(TableRow)(() => ({
+    '&:nth-of-type(odd)': {
+      backgroundColor: ' rgba(248, 249, 251, 1)',
+    },
+    // hide last border
+    '&:last-child td, &:last-child th': {
+      border: 0,
+    },
+  }));
+  return (
+    <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 700 }} aria-label="customized table">
+        <TableHead>
+          <TableRow>
+            <StyledTableCell
+              sx={{ paddingBlock: '2rem', fontWeight: '700' }}
+              align="center"
+            >
+              name
+            </StyledTableCell>
+            <StyledTableCell sx={{ fontWeight: '700' }} align="center">
+              created At
+            </StyledTableCell>
+            <StyledTableCell sx={{ fontWeight: '700' }} align="center">
+              created By
+            </StyledTableCell>
+            <StyledTableCell sx={{ fontWeight: '700' }} align="center">
+              updatedAt
+            </StyledTableCell>
+            <StyledTableCell
+              sx={{ fontWeight: '700' }}
+              align="center"
+            ></StyledTableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {list.map((list) => (
+            <StyledTableRow key={list._id}>
+              <StyledTableCell align="center" component="th" scope="row">
+                {list.name}
+              </StyledTableCell>
+              <StyledTableCell align="center">
+                {formatDate(list.createdAt)}
+              </StyledTableCell>
+              <StyledTableCell align="center">
+                {list.createdBy.userName}
+              </StyledTableCell>
+              <StyledTableCell align="center">
+                {formatDate(list.updatedAt)}
+              </StyledTableCell>
+              <StyledTableCell align="center">
+                <DropdownMenu
+                  handleOpenDelete={() => handleOpenDelete(list._id)}
+                  list={list}
+                  handleOpen={handleOpen}
+                />
+              </StyledTableCell>
+            </StyledTableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  );
+}

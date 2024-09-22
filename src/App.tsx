@@ -1,11 +1,10 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import './App.module.scss';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import './App.css';
 import NotFound from './modules/shared/component/notFound/NotFound';
 import Login from './modules/authontication/component/logIn/Login';
 import ResetPass from './modules/authontication/component/resetPass/ResetPass';
-import VerifyAccount from './modules/authontication/component/verifyAccount/VerifyAccount';
 import Register from './modules/authontication/component/register/Register';
 import AuthLayOut from './modules/shared/component/authLayout/AuthLayout';
 import LandingPage from './modules/uers/components/LandingPage/LandingPage';
@@ -19,12 +18,13 @@ import AdminMasterLayout from './modules/shared/component/adminMasterLayout/Admi
 import Home from './modules/admin/components/home/Home';
 import Ads from './modules/admin/components/ads/Ads';
 import BookingList from './modules/admin/components/bookingList/BookingList';
-import FacilitiesList from './modules/admin/components/facilitiesList/FacilitiesList';
+import FacilitiesList from './modules/admin/components/Facilities/Components/FacilitiesList/FacilitiesList';
 import RoomsList from './modules/admin/components/roomList/RoomsList';
 import AddOrEditRooms from './modules/admin/components/rooms/AddOrEditRooms';
 import UsersList from './modules/admin/components/usersList/UsersList';
 import { imgResetpass } from './assets/ParrelAssets/Parrel';
 import ForgetPass from './modules/authontication/component/forgetPassword/forgetPassword';
+import ProtectedRoute from './modules/shared/component/protectedRoute/ProtectedRoute';
 
 function App() {
   const routes = createBrowserRouter([
@@ -47,7 +47,7 @@ function App() {
           element: <ResetPass imag={imgResetpass} />,
         },
         { path: 'register', element: <Register /> },
-        { path: 'verify-account', element: <VerifyAccount /> },
+        // { path: 'verify-account', element: <VerifyAccount /> },
         {
           path: 'forget-password',
           element: <ForgetPass />,
@@ -58,6 +58,7 @@ function App() {
       // --------------------------------------User-Master-Layout
       path: '/',
       element: <UserMasterLayout />,
+
       errorElement: <NotFound />,
       children: [
         {
@@ -70,11 +71,19 @@ function App() {
         },
         {
           path: 'booking',
-          element: <Booking />,
+          element: (
+            <ProtectedRoute>
+              <Booking />,
+            </ProtectedRoute>
+          ),
         },
         {
           path: 'change-Pass',
-          element: <ChangePass />,
+          element: (
+            <ProtectedRoute>
+              <ChangePass />,
+            </ProtectedRoute>
+          ),
         },
         {
           path: 'details-Page',
@@ -94,8 +103,13 @@ function App() {
     {
       // --------------------------------------admin-Master-Layout
       path: '/dashBaord',
-      element: <AdminMasterLayout />,
+      element: (
+        <ProtectedRoute>
+          <AdminMasterLayout />,
+        </ProtectedRoute>
+      ),
       errorElement: <NotFound />,
+
       children: [
         {
           index: true,
@@ -106,7 +120,7 @@ function App() {
           element: <Home />,
         },
         {
-          path: 'ads',
+          path: 'ads-list',
           element: <Ads />,
         },
         {
@@ -117,6 +131,7 @@ function App() {
           path: 'facilities-List',
           element: <FacilitiesList />,
         },
+        { path: 'facility-edit/:id', element: <FacilitiesList /> },
         {
           path: 'room-list',
           element: <RoomsList />,

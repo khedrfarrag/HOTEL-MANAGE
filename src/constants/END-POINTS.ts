@@ -113,11 +113,11 @@ export const Portal_rooms_URL = {
 
 // .....................................................portal-Booking
 
-const BASE_Portal_Booking = `${BASE_URL}/portal/booking`;
+const BASE_Portal_Booking = `${BASE_URL}/admin/booking`;
 
 export const PORTAL_Booking_URL = {
   createBooking: `${BASE_Portal_Booking}`,
-  getAllBooking: `${BASE_Portal_Booking}/my`,
+  getAllBooking: `${BASE_Portal_Booking}`,
   getbookingDetails: (id: string) => `${BASE_Portal_Booking}/${id}`,
   payBooking: (id: string) => `${BASE_Portal_Booking}/${id}/pay`,
 };

@@ -63,3 +63,35 @@
     color: var(--h3);
   }
 }
+
+// animation>>>>>>>>>>>>>>>>>>>
+
+.contanerInput {
+  position: relative;
+  animation: resetInput 1s alternate backwards;
+  animation-delay: 1s;
+}
+.contanerimage {
+  position: relative;
+  animation: resetImage 1s alternate backwards;
+}
+@keyframes resetInput {
+  from {
+    transform: translateX(-50%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+@keyframes resetImage {
+  from {
+    transform: translateX(50%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}

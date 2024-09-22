@@ -1,0 +1,14 @@
+:root {
+  --color-menu: rgba(32, 63, 199, 1);
+}
+
+.contaner {
+  height: 100vh !important;
+}
+.contaner .Sidebar {
+  height: 100% !important;
+}
+.contaner .Sidebar .mainMenu {
+  background-color: var(--color-menu) !important;
+  height: 100% !important;
+}/*# sourceMappingURL=Sidbar.module.css.map */
