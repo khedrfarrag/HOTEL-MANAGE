@@ -5,7 +5,7 @@ import TableWithAction from '../../../../../shared/component/TableWithAction/Tab
 import Title from '../../../../../shared/component/Title/Title';
 import DeleteConfirmationModal from '../../../../../shared/component/DeleteConfirmationModal/DeleteConfirmationModal';
 import { toast } from 'react-toastify';
-import axios, { AxiosError } from 'axios';
+import axios from 'axios';
 import { AxiosErrorResponse } from '../../../../../../Interfaces/AuthResponse/AuthResponse';
 import { ADMIN_RoomFacility_URL } from '../../../../../../constants/END-POINTS';
 
