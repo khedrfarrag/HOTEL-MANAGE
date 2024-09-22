@@ -22,7 +22,6 @@ export type BokingType = {
     totalPrice: number;
     user: user;
   };
-  // Bokinglist: BokingType[];
 };
 
 type user = {
