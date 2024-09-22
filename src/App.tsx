@@ -1,12 +1,11 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.module.scss';
 import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import NotFound from './modules/shared/component/notFound/NotFound';
-import Login from './modules/authontication/component/logIn/Login.tss';
+import Login from './modules/authontication/component/logIn/Login';
 import ResetPass from './modules/authontication/component/resetPass/ResetPass';
 import VerifyAccount from './modules/authontication/component/verifyAccount/VerifyAccount';
-import ForgetPass from './modules/authontication/component/forgetPass/ForgetPass';
 import Register from './modules/authontication/component/register/Register';
 import AuthLayOut from './modules/shared/component/authLayout/AuthLayout';
 import LandingPage from './modules/uers/components/LandingPage/LandingPage';
@@ -25,6 +24,12 @@ import RoomsList from './modules/admin/components/roomList/RoomsList';
 import AddOrEditRooms from './modules/admin/components/rooms/AddOrEditRooms';
 import UsersList from './modules/admin/components/usersList/UsersList';
 import { imgResetpass } from './assets/ParrelAssets/Parrel';
+import ForgetPass from './modules/authontication/component/forgetPassword/forgetPassword';
+
+// const theme = createTheme({
+//   direction: 'rtl', // or 'ltr' depending on your app's locale
+//   // other theme settings
+// });
 
 function App() {
   const routes = createBrowserRouter([
@@ -49,9 +54,9 @@ function App() {
         { path: 'register', element: <Register /> },
         { path: 'verify-account', element: <VerifyAccount /> },
         {
-          path: 'forget-pass',
-          element: <ForgetPass />,
-        },
+          path: 'forget-password',
+          element: <ForgetPass/>,
+          },
         
       ],
     },

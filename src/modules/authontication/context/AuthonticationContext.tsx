@@ -11,7 +11,7 @@ export default function AuthonticationContext(props: Props) {
   const [LoginData, SetLoginData] = useState<state>();
   const SaveToken = () => {
     // save token to local storage
-    const DataToken = localStorage.getItem('token');
+    const DataToken = localStorage.getItem('userToken');
     if (DataToken) {
       const DecodeToken = jwtDecode(DataToken);
       SetLoginData(DecodeToken);
@@ -20,7 +20,7 @@ export default function AuthonticationContext(props: Props) {
   };
 
   useEffect(() => {
-    if (localStorage.getItem('token')) {
+    if (localStorage.getItem('userToken')) {
       SaveToken();
     }
   }, []);
