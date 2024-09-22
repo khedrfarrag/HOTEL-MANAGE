@@ -1,0 +1,63 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.img-container {
+    height: 100vh;
+    background-image: url('../src/assets/auth-imgs/login-img.svg');
+    background-size: cover;
+}
+
+:root {
+    --bg-sidebar: rgba(32, 63, 199, 1);
+    --hover-bg-sidebar: rgba(26, 27, 30, 0.17);
+    --color-sidebar: rgba(250, 250, 250, 1);
+}
+
+/* ---------------------- sideBar comp ---------------------- */
+.sidebar-container {
+
+    .css-1wvake5 {
+        border-right: none !important;
+    }
+
+    ul span {
+        color: var(--color-sidebar) !important;
+    }
+
+    .ps-sidebar-container {
+        background-color: var(--bg-sidebar) !important;
+        height: 100vh !important;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .ps-menu-button:hover,
+    .ps-menu-button:focus {
+        background-color: var(--hover-bg-sidebar) !important;
+        border-radius: 15px;
+        border-color: transparent !important;
+    }
+
+    .ps-menu-button.active {
+        color: var(color-sidebar);
+    }
+
+    .icon-toggle i {
+        padding: 0.8rem 0.25rem;
+        transition: transform 0.3s ease-in-out;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .css-1wvake5.ps-collapsed {
+        width: 65px !important;
+        min-width: 65px !important;
+    }
+
+    .css-1t8x7v1>.ps-menu-button {
+        padding-left: 10px !important;
+    }
+}
