@@ -10,9 +10,9 @@ export const getToken = () => {
 
 // ........................................................................................imagePathHelper
 
-const imagePathHelper = (path: any) => {
-  // return `${process.env.REACT_APP_API_URL}${path}`;
-};
+// const imagePathHelper = (path: any) => {
+//   // return `${process.env.REACT_APP_API_URL}${path}`;
+// };
 // ........................................................................................Collections
 // const BASE_URL_COLLECTION = `https://api.getpostman.com/collections`;
 
