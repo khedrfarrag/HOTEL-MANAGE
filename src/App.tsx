@@ -20,7 +20,6 @@ import Ads from './modules/admin/components/ads/Ads';
 import BookingList from './modules/admin/components/bookingList/BookingList';
 import FacilitiesList from './modules/admin/components/Facilities/Components/FacilitiesList/FacilitiesList';
 import RoomsList from './modules/admin/components/roomList/RoomsList';
-import AddOrEditRooms from './modules/admin/components/rooms/AddOrEditRooms';
 import UsersList from './modules/admin/components/usersList/UsersList';
 import { imgResetpass } from './assets/ParrelAssets/Parrel';
 import ForgetPass from './modules/authontication/component/forgetPassword/forgetPassword';
@@ -135,10 +134,6 @@ function App() {
         {
           path: 'room-list',
           element: <RoomsList />,
-        },
-        {
-          path: 'add-edit-rooms',
-          element: <AddOrEditRooms />,
         },
         {
           path: 'users-List',

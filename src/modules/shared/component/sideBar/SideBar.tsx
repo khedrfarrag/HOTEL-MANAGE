@@ -9,10 +9,11 @@ import LockOpenIcon from '@mui/icons-material/LockOpen';
 import { Stack } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { Menu, MenuItem, Sidebar } from 'react-pro-sidebar';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 export default function SideBar() {
   const location = useLocation();
+  const navigate = useNavigate()
   const [isCollapse, setIsCollapse] = useState(true);
 
   const getMenuItemClassName = (path: string) => {
@@ -111,6 +112,7 @@ export default function SideBar() {
           <MenuItem
             onClick={() => {
               localStorage.removeItem('token');
+              navigate('/AuthLayOut/login')
             }}
             icon={<ChevronRightIcon />}
             className="ps-menu-button"

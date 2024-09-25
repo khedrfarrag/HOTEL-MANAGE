@@ -49,8 +49,7 @@ export const ADMIN_Rooms_URL = {
   updateRoom: (id: string) => `${BASE_Admin_Rooms}/${id}`,
   GetRoomDetails: (id: string) => `${BASE_Admin_Rooms}/${id}`,
   deleteRoom: (id: string) => `${BASE_Admin_Rooms}/${id}`,
-  getAllRooms: (page: string, size: string) =>
-    `${BASE_Admin_Rooms}?page=${page}&size=${size}`,
+  getAllRooms: `${BASE_Admin_Rooms}`
 };
 
 // .....................................................admin-Booking
