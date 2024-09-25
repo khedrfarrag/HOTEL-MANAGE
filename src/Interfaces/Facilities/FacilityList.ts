@@ -10,3 +10,7 @@ interface createdBy{
     userName:string;
     _id:string
 }
+
+const facilitiesList: FacilityListRespones[] = []
+
+
