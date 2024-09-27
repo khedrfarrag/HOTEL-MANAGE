@@ -11,19 +11,16 @@ import { Box, Typography } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import axios from 'axios';
 import LoadingPage from '../../../shared/component/loadingPage/LoadingPage';
-import Modals from './modals/Modals';
-import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
-import DeleteModal from './modals/DeleteModal';
-import EditIcon from '@mui/icons-material/Edit';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import { Margin, Padding } from '@mui/icons-material';
+import CreateModal from './modals/CreateModal';
+import { toast } from 'react-toastify';
+import NestedModal from './modals/NestedModal';
 
 export default function Ads() {
   const [allAds, setAllAds] = useState([]);
   const [roomNumbers, setRoomNumbers] = useState([]);
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
-    [`&.${tableCellClasses.head}`]: {
+    [`&.${tableCellClasses}`]: {
       backgroundColor: theme.palette.common.black,
       color: theme.palette.common.white,
     },
@@ -41,6 +38,7 @@ export default function Ads() {
     },
   }));
 
+  //   ......................................... get all Ads
   const getAllAds = async () => {
     try {
       const response = await axios.get(
@@ -53,10 +51,13 @@ export default function Ads() {
       );
 
       setAllAds(response.data.data.ads);
+      console.log(response.data.data.ads);
     } catch (error) {
-      console.error(error);
+      console.log(error.response.data.message);
+      toast.error(error.response.data.message);
     }
   };
+  //   ......................................... get all Rooms
 
   const getAllRooms = async () => {
     try {
@@ -96,58 +97,77 @@ export default function Ads() {
               </Grid>
 
               <Grid size={2} sx={{ margin: 'auto', textAlign: 'center' }}>
-                <Modals btnText={'Add New Ad'} roomNumbers={roomNumbers} />
+                <CreateModal
+                  btnText={'Add New Ad'}
+                  roomNumbers={roomNumbers}
+                  onCreateSuccess={getAllAds}
+                />
               </Grid>
             </Grid>
           </Box>
 
-          <Box sx={{ margin: 3 }}>
+          {/* ------------------------------------------------------------------Table */}
+          <Box sx={{ margin: 3, textAlign: 'center' }}>
             <TableContainer component={Paper}>
               <Table sx={{ minWidth: 700 }} aria-label="customized table">
-                <TableHead>
+                <TableHead
+                  sx={{
+                    backgroundColor: 'rgba(226, 229, 235, 1)',
+                    color: 'white',
+                  }}
+                >
                   <TableRow>
-                    <StyledTableCell>Room Name</StyledTableCell>
-                    <StyledTableCell align="right">Price</StyledTableCell>
-                    <StyledTableCell align="right">Discount</StyledTableCell>
-                    <StyledTableCell align="right">Capacity</StyledTableCell>
-                    <StyledTableCell align="right">Active</StyledTableCell>
-                    <StyledTableCell align="right">Options</StyledTableCell>
+                    <StyledTableCell align="center">Room Name</StyledTableCell>
+                    <StyledTableCell align="center">Price</StyledTableCell>
+                    <StyledTableCell align="center">Discount</StyledTableCell>
+                    <StyledTableCell align="center">Capacity</StyledTableCell>
+                    <StyledTableCell align="center">Active</StyledTableCell>
+                    <StyledTableCell align="center">Options</StyledTableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {allAds.map((ad) => (
                     <StyledTableRow key={ad.room.roomNumber}>
-                      <StyledTableCell>{ad.room.roomNumber}</StyledTableCell>
-                      <StyledTableCell align="right">
+                      <StyledTableCell align="center">
+                        {ad.room.roomNumber}
+                      </StyledTableCell>
+                      <StyledTableCell align="center">
                         {ad.room.price}
                       </StyledTableCell>
-                      <StyledTableCell align="right">
+                      <StyledTableCell align="center">
                         {ad.room.discount}
                       </StyledTableCell>
-                      <StyledTableCell align="right">
+                      <StyledTableCell align="center">
                         {ad.room.capacity}
                       </StyledTableCell>
-                      <StyledTableCell align="right">
+                      <StyledTableCell align="center">
                         {ad.isActive ? 'true' : 'false'}
                       </StyledTableCell>
 
-                      <StyledTableCell align="right">
-                        <DeleteModal
-                          btnText={<VisibilityIcon />}
-                          adsId={ad._id}
-                          onDeleteSuccess={getAllAds}
-                        />
-                        <DeleteModal
-                          btnText={<DeleteForeverOutlinedIcon />}
-                          adsId={ad._id}
-                          onDeleteSuccess={getAllAds}
-                        />
+                      <StyledTableCell
+                        align="center"
+                        sx={{
+                          padding: 0,
+                          margin: 0,
+                        }}
+                      >
+                        <Box>
+                          {/* <DetailsModal adsId={ad._id} />
 
-                        <DeleteModal
-                          btnText={<EditIcon />}
-                          adsId={ad._id}
-                          onDeleteSuccess={getAllAds}
-                        />
+                          <DeleteModal
+                            adsId={ad._id}
+                            onDeleteSuccess={getAllAds}
+                          />
+                          <EditModals
+                            adsId={ad._id}
+                            onEditSuccess={getAllAds}
+                          /> */}
+                          <NestedModal
+                            adsId={ad._id}
+                            onDeleteSuccess={getAllAds}
+                            onEditSuccess={getAllAds}
+                          />
+                        </Box>
                       </StyledTableCell>
                     </StyledTableRow>
                   ))}

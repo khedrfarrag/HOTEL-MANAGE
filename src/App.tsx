@@ -25,6 +25,7 @@ import AddOrEditRooms from './modules/admin/components/rooms/AddOrEditRooms';
 import UsersList from './modules/admin/components/usersList/UsersList';
 import { imgResetpass } from './assets/ParrelAssets/Parrel';
 import ForgetPass from './modules/authontication/component/forgetPassword/forgetPassword';
+import AdsContext from './modules/admin/components/ads/adsContext';
 
 function App() {
   const routes = createBrowserRouter([

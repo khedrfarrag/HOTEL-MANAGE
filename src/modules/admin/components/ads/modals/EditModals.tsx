@@ -12,16 +12,18 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import { useForm } from 'react-hook-form';
 import { VALIDATIONS } from '../../../../../constants/VALIDATIONS';
+import EditIcon from '@mui/icons-material/Edit';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 interface ModalProps {
-  btnText: string;
   roomNumbers: string[];
+  onCreateSuccess?: () => void;
 }
 
-export default function Modals({ btnText, roomNumbers }: ModalProps) {
-  const [room, setRoom] = useState<string>(''); // room ID as a string
-  const [isActive, setIsActive] = useState<boolean | null>(null); // isActive as boolean
+export default function EditModals({ onEditSuccess, adsId }: ModalProps) {
+  // -------------------------------------------------------------isActive as boolean
+  const [isActive, setIsActive] = useState<boolean | null>(null);
 
   const {
     register,
@@ -29,27 +31,21 @@ export default function Modals({ btnText, roomNumbers }: ModalProps) {
     formState: { errors },
   } = useForm();
 
-  // Handle Room selection change
-  const handleRoomChange = (event: SelectChangeEvent) => {
-    setRoom(event.target.value);
-  };
-
-  // Handle Active/Not Active change
+  //-------------------------------------------------------------- Handle Active/Not Active change
   const handleActiveChange = (event: SelectChangeEvent) => {
     setIsActive(event.target.value === 'true');
   };
 
-  // Form submit handler
+  //-------------------------------------------------------------- Form submit handler
   const onSubmit = async (formData: any) => {
     const payload = {
-      room, // Room ID as string
       discount: Number(formData.discount),
       isActive: isActive ?? false,
     };
 
     try {
-      await axios.post(
-        `https://upskilling-egypt.com:3000/api/v0/admin/ads`,
+      const response = await axios.put(
+        `https://upskilling-egypt.com:3000/api/v0/admin/ads/${adsId}`,
         payload,
         {
           headers: {
@@ -57,19 +53,24 @@ export default function Modals({ btnText, roomNumbers }: ModalProps) {
           },
         }
       );
-      console.log('Ads created successfully:', payload);
+      console.log('Ads Updated successfully:', payload);
+      toast.success(response.data.message);
+      if (onEditSuccess) {
+        onEditSuccess();
+      }
       handleClose();
     } catch (error) {
-      console.error('Error creating ads:', error);
+      console.error('Error Editing ads:', error);
+      toast.error(error.response.data.message);
     }
   };
 
-  // Modal open/close state
+  //--------------------------------------------------------- Modal open/close state
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  // Modal styles
+  // ---------------------------------------------------------Modal styles
   const style = {
     position: 'absolute' as 'absolute',
     top: '50%',
@@ -81,15 +82,15 @@ export default function Modals({ btnText, roomNumbers }: ModalProps) {
     boxShadow: 24,
     p: 4,
   };
-
   return (
     <>
-      {/* Modal Trigger Button */}
-      <Button variant="contained" onClick={handleOpen}>
-        {btnText}
+      {' '}
+      {/*.............................................................. Modal Trigger Button */}
+      <Button variant="text" onClick={handleOpen}>
+        {<EditIcon />}
+        Edit
       </Button>
-
-      {/* Modal Component */}
+      {/*................................................................... Modal Component */}
       <Modal
         open={open}
         onClose={handleClose}
@@ -97,7 +98,7 @@ export default function Modals({ btnText, roomNumbers }: ModalProps) {
       >
         <form onSubmit={handleSubmit(onSubmit)}>
           <Box sx={style}>
-            {/* X Button */}
+            {/*............................................................................... X Button */}
             <IconButton
               aria-label="close"
               onClick={handleClose}
@@ -111,36 +112,12 @@ export default function Modals({ btnText, roomNumbers }: ModalProps) {
               <CloseIcon />
             </IconButton>
 
-            {/* Modal Title */}
+            {/* .............................................................................Modal Title */}
             <Typography id="modal-modal-title" variant="h4" component="h2">
               Ads
             </Typography>
 
-            {/* Room Selection */}
-            <Box sx={{ minWidth: 120, marginBlockStart: 2 }}>
-              <FormControl fullWidth>
-                <InputLabel id="room-select-label">Room Name</InputLabel>
-                <Select
-                  labelId="room-select-label"
-                  id="room"
-                  value={room}
-                  label="room"
-                  onChange={handleRoomChange}
-                >
-                  {roomNumbers && roomNumbers.length > 0 ? (
-                    roomNumbers.map((room, i) => (
-                      <MenuItem key={i} value={room}>
-                        {room}
-                      </MenuItem>
-                    ))
-                  ) : (
-                    <MenuItem value="">No Rooms Available</MenuItem>
-                  )}
-                </Select>
-              </FormControl>
-            </Box>
-
-            {/* Discount Field */}
+            {/*................................................................ Discount Field */}
             <TextField
               id="outlined-basic"
               label="Discount"
@@ -157,7 +134,7 @@ export default function Modals({ btnText, roomNumbers }: ModalProps) {
               })}
             />
 
-            {/* Active/Not Active Selection */}
+            {/* ..........................................................Active/Not Active Selection */}
             <Box sx={{ minWidth: 120, marginBlockStart: 2 }}>
               <FormControl fullWidth>
                 <InputLabel id="active-select-label">Status</InputLabel>
@@ -174,13 +151,13 @@ export default function Modals({ btnText, roomNumbers }: ModalProps) {
               </FormControl>
             </Box>
 
-            {/* Save Button */}
+            {/* ...................................................................Save Button */}
             <Button
               type="submit"
               variant="contained"
               sx={{ marginBlockStart: 3 }}
             >
-              Save
+              Edit
             </Button>
           </Box>
         </form>

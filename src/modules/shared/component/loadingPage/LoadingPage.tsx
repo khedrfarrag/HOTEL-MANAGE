@@ -10,7 +10,7 @@ export default function LoadingPage() {
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          height: '100vh',
+          height: '100%',
           size: '4rem',
         }}
       >
