@@ -54,7 +54,7 @@ export default function SideBar() {
         <Menu onClick={toggleCollapse}>
           <MenuItem
             icon={<HomeIcon />}
-            component={<Link to="/AuthLayOut" />}
+            component={<Link to="/dashBaord" />}
             className={getMenuItemClassName('/AuthLayOut')}
           >
             Home

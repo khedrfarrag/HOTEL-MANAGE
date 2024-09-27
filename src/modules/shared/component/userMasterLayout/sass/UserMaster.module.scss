@@ -1,0 +1,6 @@
+:root {
+  --border: rgba(176, 176, 176, 1);
+}
+.borderfooter {
+  border: 1px solid var(--border);
+}

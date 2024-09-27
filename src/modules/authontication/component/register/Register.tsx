@@ -23,7 +23,19 @@ import { imgRegister } from '../../../../assets/ParrelAssets/Parrel';
 // import InputFileUpload from '../../../shared/component/TextFieldSelect/Select';
 import { styled } from '@mui/material/styles';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+
 export default function Register() {
+  const [role, setrole] = React.useState('');
+
+  const handleChange = (event: SelectChangeEvent) => {
+    setrole(event.target.value as string);
+  };
+  console.log(role);
+
   // <<<<<<<<<<<<<<<<<coustom input field >>>>>>>>>>>>>>>>>>>>
   const VisuallyHiddenInput = styled('input')({
     clip: 'rect(0 0 0 0)',
@@ -51,7 +63,8 @@ export default function Register() {
       profileImage: '',
       email: '',
       password: '',
-      role: 'admin',
+      // eslint-disable-next-line no-constant-binary-expression
+      role: '',
       confirmPassword: '',
     },
   });
@@ -174,6 +187,23 @@ export default function Register() {
                         pattern: VALIDATIONS.countryRegex,
                       })}
                     />
+                    <FormControl fullWidth>
+                      <InputLabel id="demo-simple-select-label">
+                        role
+                      </InputLabel>
+                      <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={role}
+                        label="role"
+                        {...register('role', { required: 'Role is reqierd' })}
+                        onChange={handleChange}
+                      >
+                        <MenuItem value={'admin'}>admin</MenuItem>
+                        <MenuItem value={'user'}>user</MenuItem>
+                      </Select>
+                    </FormControl>
+                    {errors.role?.message}
                     <Button
                       component="label"
                       role={undefined}

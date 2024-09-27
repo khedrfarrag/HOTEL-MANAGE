@@ -47,7 +47,7 @@ export default function Ads() {
         `https://upskilling-egypt.com:3000/api/v0/admin/ads`,
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem('userToken')}`,
+            Authorization: `${localStorage.getItem('token')}`,
           },
         }
       );
@@ -64,7 +64,7 @@ export default function Ads() {
         `https://upskilling-egypt.com:3000/api/v0/admin/rooms`,
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem('userToken')}`,
+            Authorization: `${localStorage.getItem('token')}`,
           },
         }
       );

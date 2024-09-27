@@ -28,7 +28,7 @@ export default function DeleteModal({
         `https://upskilling-egypt.com:3000/api/v0/admin/ads/${id}`,
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem('userToken')}`,
+            Authorization: ` ${localStorage.getItem('token')}`,
           },
         }
       );

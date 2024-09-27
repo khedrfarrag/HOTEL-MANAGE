@@ -107,8 +107,7 @@ export const Portal_rooms_URL = {
     size: string,
     startDate: string,
     endDate: string
-  ) =>
-    `${BASE_Portal_Rooms}/available?page=${page}&size=${size}&startDate=${startDate}&endDate=${endDate}`,
+  ) => `${BASE_Portal_Rooms}/available`,
   getRoomDetails: (id: string) => `${BASE_Portal_Rooms}/${id}`,
 };
 

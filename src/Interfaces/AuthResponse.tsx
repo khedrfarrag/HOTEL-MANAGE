@@ -11,7 +11,7 @@ export interface RegisterFormData extends LoginFormData {
   phoneNumber: string;
   confirmPassword: string;
   profileImage: any;
-  role: 'admin' | 'user';
+  role: '';
 }
 
 export interface LoginFormData {
