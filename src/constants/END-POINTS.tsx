@@ -49,7 +49,7 @@ export const ADMIN_Rooms_URL = {
   createRoom: `${BASE_Admin_Rooms}`,
   updateRoom: (id:string) => `${BASE_Admin_Rooms}/${id}`,
   GetRoomDetails: (id:string) => `${BASE_Admin_Rooms}/${id}`,
-  deleteRoom: (id:string) => `${BASE_Admin_Rooms}/${id}`,
+  deleteRoom: (id: string) => `${BASE_Admin_Rooms}/${id}`,
   getAllRooms: `${BASE_Admin_Rooms}`,
 
 };
@@ -107,6 +107,7 @@ export const Portal_rooms_URL = {
   getAllRooms: (page:string, size:string, startDate:string, endDate:string) =>
     `${BASE_Portal_Rooms}/available?page=${page}&size=${size}&startDate=${startDate}&endDate=${endDate}`,
   getRoomDetails: (id:string) => `${BASE_Portal_Rooms}/${id}`,
+  
 
 };
 

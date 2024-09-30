@@ -132,6 +132,10 @@ function App() {
           element: <AddOrEditRooms />,
         },
         {
+          path: 'add-edit-rooms/:id',
+          element: <AddOrEditRooms />,
+        },
+        {
           path: 'users-List',
           element: <UsersList />,
         },

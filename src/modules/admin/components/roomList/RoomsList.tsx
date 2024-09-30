@@ -5,11 +5,11 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { ChangeEvent, useEffect, useState } from 'react';
+import {useEffect, useState } from 'react';
 import axios from 'axios';
 import notfound from "../../../../assets/notfounded.jpg"
-import { ADMIN_Rooms_URL, getToken } from '../../../../constants/END-POINTS';
-import { alpha,AppBar,Box, Button, Divider, FormControl, IconButton, InputAdornment, InputBase, InputLabel, Select, Stack, styled, TableFooter, TablePagination, TextField, Toolbar, Typography } from '@mui/material';
+import { ADMIN_RoomFacility_URL, ADMIN_Rooms_URL } from '../../../../constants/END-POINTS';
+import { alpha,Box, Button, Divider, FormControl, IconButton, InputAdornment, InputLabel, Select, SelectChangeEvent, Stack, styled, TablePagination, TextField, Typography } from '@mui/material';
 import { KeyboardArrowLeft, KeyboardArrowRight,FirstPage,LastPage } from '@mui/icons-material';
 import Menu, { MenuProps } from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -22,6 +22,19 @@ import MoreHorizSharpIcon from '@mui/icons-material/MoreHorizSharp';
 import React from 'react';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
+import Modal from '@mui/material/Modal';
+
+const style = {
+  position: 'absolute' as 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 
 interface TablePaginationActionsProps {
   count: number;
@@ -33,10 +46,23 @@ interface TablePaginationActionsProps {
   ) => void;
 }
 
-
+interface RoomsData{
+  _id:string;
+  roomNumber:string;
+  price:string;
+  capacity:string;
+  discount:string;
+  images:string;
+  facilities:string[]
+}
 
 
 export default function RoomsList() {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () =>{
+    setOpen(true);
+  } 
+  const handleClose = () => setOpen(false);
   const StyledMenu = styled((props: MenuProps) => (
     <Menu
       elevation={0}
@@ -82,17 +108,16 @@ export default function RoomsList() {
   
     
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-    const open = Boolean(anchorEl);
-    const [roomselectdId,SetroomselectdId]=useState<string|null>(null)
-    const handleClick = (event: React.MouseEvent<HTMLElement>,roomId: string) => {
-      setAnchorEl(event.currentTarget);
+    const openmeue = Boolean(anchorEl);
+    const [roomselectdId,SetroomselectdId]=useState<string>("")
+    const handleClick = (event: React.MouseEvent<HTMLElement| SVGSVGElement>,roomId: string) => {
+      setAnchorEl(event.currentTarget as HTMLElement);
       SetroomselectdId(roomId)
+      
     };
-
-    const handleClose = () => {
+    const handleClosemenu = () => {
       setAnchorEl(null);
-      SetroomselectdId(null);
-      deleteroom()
+      SetroomselectdId("");
       
     };
    
@@ -153,35 +178,40 @@ export default function RoomsList() {
   }
   const [page, setPage] =useState(0);
   const [rowsPerPage, setRowsPerPage] =useState(5);
-  const [valuename,Setvaluename]=useState("")
+  // const [valuename,Setvaluename]=useState("")
 
   // Avoid a layout jump when reaching the last page with empty rows.
-  const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+  // const emptyRows =
+  //   page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
-  const handleChangePage = (
-    event: React.MouseEvent<HTMLButtonElement> | null,
-    newPage: number,
-  ) => {
-    setPage(newPage);
+  const handleChangePage = (event: React.MouseEvent<HTMLButtonElement,MouseEvent> | null, newPage: number) => {
+    setPage(newPage);  // Update current page
+    getroom(newPage, rowsPerPage);
+    console.log(event)
   };
 
   const handleChangeRowsPerPage = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
+    setRowsPerPage(parseInt(event.target.value, 5));
     setPage(0);
+    getroom(0,parseInt(event.target.value)); // Fetch data for the new rows per page
+
   };
 
-    const [RoomData,SetroomData]=useState([])
-    const getroom=async(pagenumber:number,pagesize:number,valuename:string)=>{
+    const [RoomData,SetroomData]=useState<RoomsData[]>([])
+    const [facilities, setFacilities] = useState<any[]>([]);
+    const [selectedFacility, setSelectedFacility] = useState<string>("");
+    const [totalCount,SettotalCount]=useState<number>(0)
+    const getroom=async(pagenumber:number,pagesize:number)=>{
         try{
             const respons=await axios.get(ADMIN_Rooms_URL.getAllRooms,{headers:{Authorization:`Bearer ${localStorage.getItem("userToken")}`},params:{
-                page:pagenumber,size:pagesize,value:valuename
+                page:pagenumber,size:pagesize
             }})
             console.log(respons.data.message)
             console.log(respons.data)
             SetroomData(respons.data.data.rooms)
+            SettotalCount(respons.data.data.totalCount)
             console.log(RoomData)
             
         }
@@ -190,36 +220,64 @@ export default function RoomsList() {
         }
       }
     
-
+      const getroomsdetails=async()=>{
+        try{
+          const response=await axios.get(ADMIN_Rooms_URL.GetRoomDetails(roomselectdId),{headers:{Authorization:`Bearer ${localStorage.getItem("userToken")}`}})
+          console.log(response.data.data.room)
+          handleClosemenu()
+        }
+        catch(error){
+          console.error('Error fetching rooms details:', error);
+        }
+      }
       const deleteroom=async()=>{
         try{
-const response=await axios.delete(ADMIN_Rooms_URL.deleteRoom(roomselectdId),{headers:{Authorization:`Bearer ${localStorage.getItem("userToken")}`}})
-console.log(response.data)
-toast.success(response.data.message)
-getroom(1,rowsPerPage,"")
-        }
+          
+            const response=await axios.delete(ADMIN_Rooms_URL.deleteRoom(roomselectdId),{headers:{Authorization:`Bearer ${localStorage.getItem("userToken")}`}})
+            console.log(response.data)
+            toast.success(response.data.message)
+            getroom(page,rowsPerPage)
+            handleClose()
+            handleClosemenu()
+
+                    
+          }
+
         catch(error){
           console.error('Error deleting room:', error);
         }
       }
+      const getFacilities = async () => {
+        try {
+          const response = await axios.get(ADMIN_RoomFacility_URL.getAllRoomFacility, {
+            headers: { Authorization: `Bearer ${localStorage.getItem("userToken")}` },
+          });
+          setFacilities(response.data.data.facilities);
+          console.log(facilities)
+        } catch (error) {
+          console.log(error);
+        }
+      };
+// const handelnamechange=(e: { target: { value: React.SetStateAction<undefined>; }; })=>{
+//   const valueofname:any=e.target.value
+//   console.log(valueofname)
+//   Setnamevalue(valueofname)
+//   getroom(page,rowsPerPage,valueofname)
+// }
       useEffect(()=>{
-        getroom(1,rowsPerPage,"")
+        getroom(page,rowsPerPage)
+        getFacilities()
+        getroomsdetails()
     },[])
 
-  function handleTagChange(event: SelectChangeEvent<any>, child: ReactNode): void {
-    throw new Error('Function not implemented.');
+  function handleFacilitiesChange(event: SelectChangeEvent<any>): void {
+    const selectedValue:any = event.target.value;
+    setSelectedFacility(selectedValue);
+    console.log(selectedValue)
+    getroom(page,rowsPerPage)
   }
 
-  function handleFacilitiesChange(event: SelectChangeEvent<any>, child: ReactNode): void {
-    throw new Error('Function not implemented.');
-  }
-
-  function handelnamechange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void {
-    Setvaluename(event.target.value)
-    console.log(event.target.value)
-   getroom(1,rowsPerPage,event.target.value)
-
-  }
+  
   return (
     <>
     <Box  sx={{ display: 'flex',justifyContent:"space-between", alignItems: 'center',paddingBottom:"20px" }}>
@@ -242,32 +300,16 @@ getroom(1,rowsPerPage,"")
             </InputAdornment>
           ),
         }}
-        fullWidth onChange={handelnamechange}
+        fullWidth 
       />
 
-      {/* Tag Dropdown */}
-      <FormControl variant="outlined" sx={{ minWidth: 120 }}>
-        <InputLabel>Tag</InputLabel>
-        <Select
-          value={""}
-          onChange={handleTagChange}
-          label="Tag"
-          sx={{borderRadius:"10px"}}
-        >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value="tag1">Tag 1</MenuItem>
-          <MenuItem value="tag2">Tag 2</MenuItem>
-          <MenuItem value="tag3">Tag 3</MenuItem>
-        </Select>
-      </FormControl>
+      
 
       {/* Facilities Dropdown */}
       <FormControl variant="outlined" sx={{ minWidth: 120 }}>
         <InputLabel>Facilities</InputLabel>
         <Select
-          value={""}
+          value={selectedFacility}
           onChange={handleFacilitiesChange}
           label="Facilities"
            sx={{borderRadius:"10px"}}
@@ -275,10 +317,11 @@ getroom(1,rowsPerPage,"")
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          <MenuItem value="facility1">Facility 1</MenuItem>
+          {/* <MenuItem value="facility1">Facility 1</MenuItem>
           <MenuItem value="facility2">Facility 2</MenuItem>
-          <MenuItem value="facility3">Facility 3</MenuItem>
-        </Select>
+          <MenuItem value="facility3">Facility 3</MenuItem> */}
+{facilities.map((item) => <MenuItem key={item._id} value={item._id}>{item.name}</MenuItem>)}
+</Select>
       </FormControl>
     </Box>
      <TableContainer component={Paper}>
@@ -295,7 +338,7 @@ getroom(1,rowsPerPage,"")
           </TableRow>
         </TableHead>
         <TableBody>
-          {RoomData.map((rooms) => (
+          {RoomData.map((rooms:RoomsData) => (
             <TableRow
               key={rooms._id}
               sx={{ td: { border: 0 },th:{border:0} }}
@@ -312,21 +355,48 @@ getroom(1,rowsPerPage,"")
               <TableCell align="center">{rooms.discount}</TableCell>
               <TableCell align="center">{rooms.discount}</TableCell>
               <TableCell align="center"><MoreHorizSharpIcon  id="demo-customized-button"
-        aria-controls={open ? 'demo-customized-menu' : undefined}
+        aria-controls={openmeue ? 'demo-customized-menu' : undefined}
         aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
+        aria-expanded={openmeue ? 'true' : undefined}
         variant="contained"
         disableElevation
-        onClick={(event)=>handleClick(event, rooms._id)}/></TableCell>
-              
+        onClick={(event: React.MouseEvent<HTMLElement | SVGSVGElement, MouseEvent>) => handleClick(event, rooms._id)}/>
+        </TableCell>
+               <StyledMenu
+        id="demo-customized-menu"
+        MenuListProps={{
+          'aria-labelledby': 'demo-customized-button',
+        }}
+        anchorEl={anchorEl}
+        open={openmeue}
+        onClose={handleClosemenu}
+      >
+        <MenuItem onClick={getroomsdetails}>
+       <VisibilityIcon />
+          View
+        </MenuItem>
+        <MenuItem component={Link} to={`/dashBaord/add-edit-rooms/${rooms._id}`} state={{roomdata: RoomData.find(r => r._id === roomselectdId),type:"Edit"}}onClick={() => console.log("Editing room:", rooms)} >
+        <EditIcon />
+          Edit
+        </MenuItem>
+        <Divider sx={{ my: 0.5 }} />
+        <MenuItem onClick={handleOpen} disableRipple>
+          <DeleteOutlineIcon />
+          Delete
+        </MenuItem>
+        
+      </StyledMenu>
+      
             </TableRow>
           ))}
+         
         </TableBody>
+        
       </Table>
       <TablePagination
               rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
               colSpan={3}
-              count={RoomData.length}
+              count={Number(totalCount)}
               rowsPerPage={rowsPerPage}
               page={page}
               slotProps={{
@@ -341,34 +411,26 @@ getroom(1,rowsPerPage,"")
               onRowsPerPageChange={handleChangeRowsPerPage}
               ActionsComponent={TablePaginationActions}
             />
-            <div>
+             <div>
       
-      <StyledMenu
-        id="demo-customized-menu"
-        MenuListProps={{
-          'aria-labelledby': 'demo-customized-button',
-        }}
-        anchorEl={anchorEl}
+      <Modal
         open={open}
         onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
       >
-        <MenuItem onClick={handleClose} disableRipple>
-       <VisibilityIcon />
-          View
-        </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple>
-        <EditIcon />
-          Edit
-        </MenuItem>
-        <Divider sx={{ my: 0.5 }} />
-        <MenuItem onClick={handleClose} disableRipple>
-          <DeleteOutlineIcon />
-          Delete
-        </MenuItem>
-        
-      </StyledMenu>
+        <Box sx={style}>
+          <img src="\src\assets\Email.png"/>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+          Delete This Room ?
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+          are you sure you want to delete this item ? if you are sure just click on delete it
+          </Typography>
+          <Button onClick={deleteroom}>Delete modal ?</Button>
+        </Box>
+      </Modal>
     </div>
- 
     </TableContainer>
     </>
    
